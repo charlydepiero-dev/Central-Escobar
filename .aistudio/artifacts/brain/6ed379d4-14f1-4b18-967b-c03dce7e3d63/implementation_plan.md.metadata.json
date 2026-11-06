@@ -1,0 +1,6 @@
+{
+  "summary": "Plan de implementación para:\n1. Ajuste del turno noche del 13/10 con los datos exactos del cierre de Fati (Stock Contado: 4.846, Sistema: 4.904, 22 diferencias, Efectivo: $236.250).\n2. Congelamiento inmutable (snapshot histórico) de conteos y stock de sistema al cerrar turno, bloqueado contra modificaciones no autorizadas (edición solo con PIN Administrador).\n3. Generador dinámico y visualizador de PDF oficial para que el link compartido en WhatsApp descargue y visualice el PDF de inmediato sin redirigir a la app.",
+  "updatedAt": "2026-10-14T14:53:22.038891776Z",
+  "requestFeedback": true,
+  "userFacing": true
+}

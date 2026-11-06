@@ -1,0 +1,8 @@
+{
+  "name": "Remix App Central -3",
+  "description": "Sistema integral de control de stock, reclamos de categorías, arqueo de caja y reportes de turnos para Central de Pizzas y Empanadas Sede Escobar.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

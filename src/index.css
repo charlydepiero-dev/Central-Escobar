@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg: #F4F7F4;
+    --card: #FFFFFF;
+    --ink: #1F2823;
+    --ink-soft: #5C6E63;
+    --line: #E1E8E3;
+    --brand-dark: #123D26;
+    --brand: #1B5E38;
+    --brand-light: #28804E;
+    --brand-tint: #E8F4EC;
+    --accent-red: #C8232B;
+    --accent-red-tint: #FDE8E9;
+    --amber: #B8791A;
+    --amber-tint: #FBF0DE;
+    --red: #B4402A;
+    --red-tint: #FAE9E5;
+    --radius: 12px;
+  }
+
+  html, body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--ink);
+    background-color: var(--bg);
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.font-mono-num {
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-report, #printable-report * {
+    visibility: visible;
+  }
+  #printable-report {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: white;
+  }
+}

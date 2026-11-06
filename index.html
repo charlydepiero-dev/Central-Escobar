@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es" class="notranslate" translate="no">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      // Suppress harmless Vite dev WebSocket HMR connection errors in AI Studio iframe environment
+      window.addEventListener('error', function (e) {
+        if (e.message && (e.message.indexOf('WebSocket') !== -1 || e.message.indexOf('ws://') !== -1 || e.message.indexOf('wss://') !== -1)) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+        }
+      }, true);
+      window.addEventListener('unhandledrejection', function (e) {
+        var reason = e.reason ? String(e.reason.message || e.reason) : '';
+        if (reason.indexOf('WebSocket') !== -1 || reason.indexOf('ws://') !== -1 || reason.indexOf('wss://') !== -1) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+        }
+      }, true);
+
+      // Force clear any cached service worker files so mobile browsers load fresh code immediately
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function (registrations) {
+          for (var reg of registrations) {
+            reg.unregister();
+          }
+        });
+      }
+      if ('caches' in window) {
+        caches.keys().then(function (names) {
+          for (var name of names) {
+            caches.delete(name);
+          }
+        });
+      }
+    </script>
+    <meta name="google" content="notranslate" />
+    <meta name="googlebot" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Central · Control de Stock & Caja - Sede Escobar</title>
+    <meta name="description" content="Central de Pizzas y Empanadas Sede Escobar - Control de stock por ubicaciones, reclamos de categorías, cierre de caja y reportes de turnos." />
+    <meta property="og:title" content="Central · Control de Stock & Caja - Sede Escobar" />
+    <meta property="og:description" content="Central de Pizzas y Empanadas Sede Escobar - Control de stock por ubicaciones, reclamos de categorías, cierre de caja y reportes de turnos." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#123D26" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Central Esco" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
