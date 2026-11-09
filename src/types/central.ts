@@ -89,6 +89,7 @@ export interface TurnoCierre {
   fecha: string;
   turno: 'Mañana' | 'Tarde';
   cerrado: boolean;
+  autoArchivado?: boolean;
   hora_cierre: string;
   forzado_por?: string;
   cerrado_por?: string;

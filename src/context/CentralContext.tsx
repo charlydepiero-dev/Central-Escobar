@@ -21,8 +21,8 @@ import {
   INITIAL_RECLAMOS,
   INITIAL_EMPLEADOS,
 } from '../data/centralData';
-import { todayKey, fmtHora, fmtFechaLarga, productId, slug, normName, isAdminUser } from '../utils/centralHelpers';
-import { normalizeSistemaStock, normalizeConteos, turnoSortKey, pickReferenciaTarde } from '../utils/snapshotNormalizer';
+import { todayKey, fmtHora, fmtFechaLarga, productId, slug, normName, isAdminUser, getArgentinaHour, suggestedTurnoForNow } from '../utils/centralHelpers';
+import { normalizeSistemaStock, normalizeConteos, turnoSortKey, pickReferenciaTarde, resolveFechaOperativa, isNightClosureHour } from '../utils/snapshotNormalizer';
 
 interface CentralContextType {
   // Navigation & Session
@@ -174,10 +174,14 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [activeTab, setActiveTab] = useState<ActiveTab>('contar');
   const [reportMode, setReportMode] = useState<ReportMode>('resumen');
   
-  // Session states
+  // Session states (expira automáticamente si la sesión guardada era de un día operativo anterior)
   const [currentEmpleado, setCurrentEmpleado] = useState<Empleado | null>(() => {
     try {
       const saved = safeGetWithFallback<any>(STORAGE_KEYS.SESSION, ['central_esco_session_v4', 'central_esco_session_v3'], null);
+      if (saved?.fecha && saved.fecha !== todayKey()) {
+        localStorage.removeItem(STORAGE_KEYS.SESSION);
+        return null;
+      }
       return saved?.empleado || null;
     } catch (e) {
       // ignore
@@ -188,13 +192,13 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [currentTurno, setCurrentTurno] = useState<'Mañana' | 'Tarde'>(() => {
     try {
       const saved = safeGetWithFallback<any>(STORAGE_KEYS.SESSION, ['central_esco_session_v4', 'central_esco_session_v3'], null);
-      if (saved?.turno === 'Mañana' || saved?.turno === 'Tarde') {
+      if (saved?.fecha === todayKey() && (saved?.turno === 'Mañana' || saved?.turno === 'Tarde')) {
         return saved.turno;
       }
     } catch (e) {
       // ignore
     }
-    return 'Tarde';
+    return suggestedTurnoForNow();
   });
 
   // Strict session and shift refs to avoid stale closure issues during periodic background sync
@@ -285,12 +289,18 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [serverTurnoNoche, setServerTurnoNoche] = useState<TurnoCierre | null>(null);
 
   // Último turno cerrado del tipo "Tarde" (noche anterior)
-  // Siempre ordenar por fecha descendente para garantizar que traiga el de la noche más reciente (14/10 > 13/10)
   const ultimoTurnoNoche: TurnoCierre | null = useMemo(() => {
-    // Una sola regla (compartida con el servidor): último turno TARDE cerrado formalmente.
     const todos: TurnoCierre[] = [...pastTurnos];
-    if (serverTurnoNoche && !todos.some((t) => t.fecha === serverTurnoNoche.fecha && t.turno === serverTurnoNoche.turno)) {
-      todos.push(serverTurnoNoche);
+    if (serverTurnoNoche) {
+      const fSrv = resolveFechaOperativa(serverTurnoNoche);
+      const idx = todos.findIndex(
+        (t) => resolveFechaOperativa(t) === fSrv && t.turno === serverTurnoNoche.turno
+      );
+      if (idx >= 0) {
+        todos[idx] = serverTurnoNoche;
+      } else {
+        todos.unshift(serverTurnoNoche);
+      }
     }
     const { turno: chosen } = pickReferenciaTarde(todos, currentFecha);
     if (!chosen) return null;
@@ -331,14 +341,23 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
           }
           if (!data.ultimoTurnoNoche) setServerTurnoNoche(null);
           if (data.ultimoTurnoNoche) {
-            setServerTurnoNoche(data.ultimoTurnoNoche);
+            const normNoche: TurnoCierre = {
+              ...data.ultimoTurnoNoche,
+              fecha: resolveFechaOperativa(data.ultimoTurnoNoche) || data.ultimoTurnoNoche.fecha,
+              conteos: normalizeConteos(data.ultimoTurnoNoche.conteos),
+              sistemaStock: normalizeSistemaStock(data.ultimoTurnoNoche.sistemaStock),
+            };
+            setServerTurnoNoche(normNoche);
             setPastTurnos((prev) => {
-              const cleaned = prev;
-              const exists = cleaned.some((p) => p.fecha === data.ultimoTurnoNoche.fecha && p.turno === data.ultimoTurnoNoche.turno);
+              const exists = prev.some(
+                (p) => resolveFechaOperativa(p) === normNoche.fecha && p.turno === normNoche.turno
+              );
               const merged = exists
-                ? cleaned.map((p) => (p.fecha === data.ultimoTurnoNoche.fecha && p.turno === data.ultimoTurnoNoche.turno) ? data.ultimoTurnoNoche : p)
-                : [data.ultimoTurnoNoche, ...cleaned];
-              return merged.sort((a, b) => b.fecha.localeCompare(a.fecha));
+                ? prev.map((p) =>
+                    resolveFechaOperativa(p) === normNoche.fecha && p.turno === normNoche.turno ? normNoche : p
+                  )
+                : [normNoche, ...prev];
+              return merged.sort((a, b) => turnoSortKey(b).localeCompare(turnoSortKey(a)));
             });
           }
           if (data.sistemaStock && Object.keys(data.sistemaStock).length > 0) {
@@ -384,18 +403,27 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   // Cambiar turno actual y persistir en servidor + localStorage
   const cambiarTurnoActual = async (nuevoTurno: 'Mañana' | 'Tarde') => {
+    const today = todayKey();
+    const esCambioDeTurno = currentTurnoRef.current !== nuevoTurno || currentFecha !== today;
+
     setCurrentTurno(nuevoTurno);
     currentTurnoRef.current = nuevoTurno;
+    setCurrentFecha(today);
 
-    // Al cambiar de turno, los conteos y reclamos arrancan estrictamente en 0 para todos los turnos
-    setConteoActual({});
-    setReclamos({});
-    locallyClaimedCatsRef.current.clear();
-    try {
-      localStorage.removeItem('central_esco_contar_drafts');
-      localStorage.removeItem(STORAGE_KEYS.CONTEO);
-      localStorage.removeItem(STORAGE_KEYS.RECLAMOS);
-    } catch {}
+    // Solo limpiar conteos, reclamos y estado de cierre localmente si realmente cambió el turno/día
+    if (esCambioDeTurno) {
+      setConteoActual({});
+      setReclamos({});
+      setTurnoCerrado(false);
+      setReaperturaInfo(null);
+      locallyClaimedCatsRef.current.clear();
+      try {
+        localStorage.removeItem('central_esco_contar_drafts');
+        localStorage.removeItem('central_esco_caja_drafts');
+        localStorage.removeItem(STORAGE_KEYS.CONTEO);
+        localStorage.removeItem(STORAGE_KEYS.RECLAMOS);
+      } catch {}
+    }
 
     // Si el usuario cambia al Turno Tarde y estaba en Apertura, redirigir a Contar (Apertura es solo para Mañana)
     if (nuevoTurno === 'Tarde' && activeTab === 'apertura') {
@@ -404,17 +432,40 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     try {
       const emp = currentEmpleadoRef.current;
-      localStorage.setItem(
-        STORAGE_KEYS.SESSION,
-        JSON.stringify({ empleado: emp, turno: nuevoTurno, fecha: currentFecha })
-      );
+      if (emp) {
+        localStorage.setItem(
+          STORAGE_KEYS.SESSION,
+          JSON.stringify({ empleado: emp, turno: nuevoTurno, fecha: today })
+        );
+      }
     } catch {}
+
     try {
-      await fetch('/api/turno/set-turno', {
+      const res = await fetch('/api/turno/set-turno', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ turno: nuevoTurno, fecha: currentFecha, resetConteos: true }),
+        body: JSON.stringify({ turno: nuevoTurno, fecha: today }),
       });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.ok) {
+          if (data.turnoActivo?.cerrado !== undefined) {
+            setTurnoCerrado(!!data.turnoActivo.cerrado);
+          }
+          if (Array.isArray(data.pastTurnos)) {
+            setPastTurnos(data.pastTurnos);
+          }
+          if (data.conteoActual !== undefined) {
+            setConteoActual(data.conteoActual);
+          }
+          if (data.reclamos !== undefined) {
+            setReclamos(data.reclamos);
+          }
+        }
+      }
+      if (nuevoTurno === 'Mañana') {
+        fetchAperturaDia().catch(() => {});
+      }
     } catch (err) {
       console.warn('Error syncing turno change to server:', err);
     }
@@ -467,16 +518,23 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
           setTurnoCerrado(!!data.turnoActivo.cerrado);
         }
         const today = todayKey();
-        if (data.turnoActivo.fecha && data.turnoActivo.fecha >= today) {
-          setCurrentFecha(data.turnoActivo.fecha);
-        } else {
-          setCurrentFecha(today);
-        }
-        // SOLUCIÓN DEFINITIVA TURNO: Si el usuario ya inició sesión o seleccionó turno,
-        // su turno es inmutable y JAMÁS puede ser pisado por el poller de fondo a 'Mañana'.
-        if (!currentEmpleadoRef.current && !localStorage.getItem(STORAGE_KEYS.SESSION) && data.turnoActivo.turno) {
+        setCurrentFecha((prevFecha) => {
+          if (prevFecha !== today) {
+            setTimeout(() => fetchAperturaDia().catch(() => {}), 50);
+          }
+          return today;
+        });
+        if (!currentEmpleadoRef.current && data.turnoActivo.turno) {
           setCurrentTurno(data.turnoActivo.turno);
           currentTurnoRef.current = data.turnoActivo.turno;
+        } else if (
+          data.turnoActivo.turno === 'Tarde' &&
+          currentTurnoRef.current === 'Mañana' &&
+          (getArgentinaHour() >= 18 || getArgentinaHour() < 5)
+        ) {
+          // Si ya es horario vespertino/nocturno y el servidor está en Turno Tarde, sincronizar automáticamente
+          setCurrentTurno('Tarde');
+          currentTurnoRef.current = 'Tarde';
         }
         if (data.turnoActivo.apertura) {
           setAperturaInfo({
@@ -545,20 +603,18 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
         setPastTurnos((prev) => {
           const map = new Map<string, TurnoCierre>();
           data.pastTurnos.forEach((t: TurnoCierre) => {
-            const k = t.id || `${t.fecha}_${t.turno}_${t.hora_cierre}`;
-            map.set(k, { ...t, id: k });
+            const fOp = resolveFechaOperativa(t) || t.fecha;
+            const k = t.id || `${fOp}_${t.turno}_${t.hora_cierre}`;
+            map.set(k, { ...t, id: k, fecha: fOp });
           });
           const hace3min = Date.now() - 3 * 60 * 1000;
           prev.forEach((t) => {
-            const k = t.id || `${t.fecha}_${t.turno}_${t.hora_cierre}`;
+            const fOp = resolveFechaOperativa(t) || t.fecha;
+            const k = t.id || `${fOp}_${t.turno}_${t.hora_cierre}`;
             const reciente = t.timestamp ? Date.parse(t.timestamp) > hace3min : false;
-            if (!map.has(k) && reciente) map.set(k, { ...t, id: k });
+            if (!map.has(k) && reciente) map.set(k, { ...t, id: k, fecha: fOp });
           });
-          const merged = Array.from(map.values()).sort((a, b) => {
-            const timeA = a.timestamp || `${a.fecha}T${a.hora_cierre || '00:00'}`;
-            const timeB = b.timestamp || `${b.fecha}T${b.hora_cierre || '00:00'}`;
-            return timeB.localeCompare(timeA);
-          });
+          const merged = Array.from(map.values()).sort((a, b) => turnoSortKey(b).localeCompare(turnoSortKey(a)));
           return merged;
         });
       }
@@ -657,17 +713,25 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
             rol: ['charly', 'carlos', 'luis', 'admin'].includes(data.empleado.nombre.toLowerCase()) ? 'admin' : 'empleado',
             bloqueado: false,
           };
+          const today = todayKey();
+          const eraOtroTurno = currentTurnoRef.current !== turno || currentFecha !== today;
           setCurrentEmpleado(verifiedEmp);
           currentEmpleadoRef.current = verifiedEmp;
           setCurrentTurno(turno);
           currentTurnoRef.current = turno;
+          setCurrentFecha(today);
           try {
             localStorage.setItem(
               STORAGE_KEYS.SESSION,
-              JSON.stringify({ empleado: verifiedEmp, turno, fecha: currentFecha })
+              JSON.stringify({ empleado: verifiedEmp, turno, fecha: today })
             );
           } catch {}
-          cambiarTurnoActual(turno);
+          if (eraOtroTurno) {
+            await cambiarTurnoActual(turno);
+          } else {
+            sincronizarConServidor().catch(() => {});
+            if (turno === 'Mañana') fetchAperturaDia().catch(() => {});
+          }
           setHoraInicio(fmtHora());
           return { ok: true, empleado: verifiedEmp };
         } else if (data.bloqueado) {
@@ -710,17 +774,25 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
     if (emp) {
       const rol: 'admin' | 'empleado' = ['charly', 'carlos', 'luis', 'admin'].includes(emp.nombre.toLowerCase()) ? 'admin' : 'empleado';
       const fullEmp: Empleado = { ...emp, rol };
+      const today = todayKey();
+      const eraOtroTurno = currentTurnoRef.current !== turno || currentFecha !== today;
       setCurrentEmpleado(fullEmp);
       currentEmpleadoRef.current = fullEmp;
       setCurrentTurno(turno);
       currentTurnoRef.current = turno;
+      setCurrentFecha(today);
       try {
         localStorage.setItem(
           STORAGE_KEYS.SESSION,
-          JSON.stringify({ empleado: fullEmp, turno, fecha: currentFecha })
+          JSON.stringify({ empleado: fullEmp, turno, fecha: today })
         );
       } catch {}
-      cambiarTurnoActual(turno);
+      if (eraOtroTurno) {
+        await cambiarTurnoActual(turno);
+      } else {
+        sincronizarConServidor().catch(() => {});
+        if (turno === 'Mañana') fetchAperturaDia().catch(() => {});
+      }
       setHoraInicio(fmtHora());
       return { ok: true, empleado: fullEmp };
     }
@@ -1066,7 +1138,9 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
     }).catch((e) => console.log('Conteo save sync error:', e));
   };
 
-  // Actualización inmediata individual de casillero para persistencia fluida sin bloquear al scrolear
+  const itemSaveTimerRef = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
+
+  // Actualización inmediata individual de casillero con sincronización automática al servidor
   const actualizarConteoItem = (productId: string, ubicacion: string, valor: number) => {
     const hora = fmtHora();
     const empNombre = currentEmpleadoRef.current?.nombre || 'Colaborador';
@@ -1085,6 +1159,24 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
       try {
         localStorage.setItem(STORAGE_KEYS.CONTEO, JSON.stringify(updated));
       } catch {}
+
+      // Persistir también al servidor con pequeño debounce para no perder ningún conteo aunque no toquen "Guardar"
+      if (itemSaveTimerRef.current[productId]) {
+        clearTimeout(itemSaveTimerRef.current[productId]);
+      }
+      itemSaveTimerRef.current[productId] = setTimeout(() => {
+        fetch('/api/conteo/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            items: [{ productId, ubicaciones: updatedUbic }],
+            empleado: empNombre,
+            hora,
+            soloActualizarConteo: true,
+          }),
+        }).catch(() => {});
+      }, 450);
+
       return updated;
     });
   };
@@ -1355,9 +1447,26 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     const cerrador = currentEmpleado?.nombre || 'Carlos';
     const hora = fmtHora();
+    const fechaOperativa = todayKey();
+    const arHour = getArgentinaHour();
+
+    // Si se está cerrando en horario nocturno (>=19 hs o <05 hs) y el selector había quedado en 'Mañana',
+    // clasificarlo automáticamente como 'Tarde' para que la Apertura del día siguiente lo tome sin fallar.
+    let turnoEfectivo: 'Mañana' | 'Tarde' = currentTurno;
+    if (turnoEfectivo === 'Mañana' && (isNightClosureHour(hora) || arHour >= 19 || arHour < 5)) {
+      const yaCerroMananaHoy = pastTurnos.some(
+        (pt) => resolveFechaOperativa(pt) === fechaOperativa && pt.turno === 'Mañana' && !pt.autoArchivado
+      );
+      if (yaCerroMananaHoy || arHour >= 20 || arHour < 5 || isNightClosureHour(hora)) {
+        turnoEfectivo = 'Tarde';
+        setCurrentTurno('Tarde');
+        currentTurnoRef.current = 'Tarde';
+      }
+    }
+
     const textoWA = generarTextoReporteWhatsApp(cerrador);
 
-    const shiftId = `turno_${currentFecha}_${currentTurno}_${Date.now()}`;
+    const shiftId = `turno_${fechaOperativa}_${turnoEfectivo}_${Date.now()}`;
     const isoTime = new Date().toISOString();
 
     const efReal = Number(overrideCaja?.efectivo_real ?? cierreCaja.efectivo_real) || 0;
@@ -1374,8 +1483,8 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
       ...cierreCaja,
       ...(overrideCaja || {}),
       existe: true,
-      fecha: currentFecha,
-      turno: currentTurno,
+      fecha: fechaOperativa,
+      turno: turnoEfectivo,
       efectivo_real: efReal,
       efectivo_mostrador_sist: efSist,
       diferencia_efectivo: difEfectivo,
@@ -1410,8 +1519,8 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
     const nuevoTurno: TurnoCierre = {
       id: shiftId,
       timestamp: isoTime,
-      fecha: currentFecha,
-      turno: currentTurno,
+      fecha: fechaOperativa,
+      turno: turnoEfectivo,
       cerrado: true,
       hora_cierre: hora,
       cerrado_por: cerrador,

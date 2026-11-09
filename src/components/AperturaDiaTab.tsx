@@ -152,10 +152,27 @@ export const AperturaDiaTab: React.FC = () => {
 
   const hasUserEditedRef = useRef<boolean>(false);
   const isInitializedRef = useRef<boolean>(false);
+  const lastFechaRef = useRef<string>(currentFecha);
+
+  // Al cambiar el día operativo, desbloquear edición para cargar los datos frescos de la noche anterior
+  useEffect(() => {
+    if (lastFechaRef.current !== currentFecha) {
+      lastFechaRef.current = currentFecha;
+      hasUserEditedRef.current = false;
+    }
+  }, [currentFecha]);
 
   // Inicializar los conteos de apertura con lo contado la noche anterior para el turno de Hoy
   useEffect(() => {
     if (hasUserEditedRef.current || isReviewMode) return;
+
+    // Solo reutilizar una apertura guardada de hoy si corresponde al mismo turno noche de referencia actual
+    const aperturaDeHoyValida =
+      ultimaAperturaDia &&
+      ultimaAperturaDia.fecha === currentFecha &&
+      (!turnoNocheReferencia?.fecha ||
+        !ultimaAperturaDia.turnoAnteriorFecha ||
+        ultimaAperturaDia.turnoAnteriorFecha === turnoNocheReferencia.fecha);
 
     const initial: Record<string, number> = {};
     catalogo.forEach((cat) => {
@@ -163,9 +180,8 @@ export const AperturaDiaTab: React.FC = () => {
         g.productos.forEach((p) => {
           const pid = productId(cat.id, p);
           if (
-            ultimaAperturaDia &&
-            ultimaAperturaDia.fecha === currentFecha &&
-            ultimaAperturaDia.stockAudit?.[pid]?.contadoApertura !== undefined
+            aperturaDeHoyValida &&
+            ultimaAperturaDia?.stockAudit?.[pid]?.contadoApertura !== undefined
           ) {
             initial[pid] = ultimaAperturaDia.stockAudit[pid].contadoApertura;
           } else {
@@ -177,8 +193,8 @@ export const AperturaDiaTab: React.FC = () => {
     setStockCounts(initial);
 
     if (
+      aperturaDeHoyValida &&
       ultimaAperturaDia &&
-      ultimaAperturaDia.fecha === currentFecha &&
       ultimaAperturaDia.efectivoContadoApertura > 0
     ) {
       setEfectivoContado(ultimaAperturaDia.efectivoContadoApertura.toString());
@@ -186,9 +202,12 @@ export const AperturaDiaTab: React.FC = () => {
       setObservacionesStock(ultimaAperturaDia.observacionesStock || '');
     } else if (efectivoNocheEsperado > 0) {
       setEfectivoContado(efectivoNocheEsperado.toString());
+    } else {
+      setEfectivoContado('');
     }
     isInitializedRef.current = true;
-  }, [catalogo, conteoFisicoNocheMap, ultimaAperturaDia, currentFecha, efectivoNocheEsperado, isReviewMode]);
+  }, [catalogo, conteoFisicoNocheMap, ultimaAperturaDia, turnoNocheReferencia, currentFecha, efectivoNocheEsperado, isReviewMode]);
+
 
   // Cálculos de Caja Activos
   const activeEfectivoEsperado = isReviewMode && selectedHistoricalApertura
@@ -269,26 +288,33 @@ export const AperturaDiaTab: React.FC = () => {
     }
   };
 
-  // Función para re-consultar la caja nocturna desde el servidor / Datalive
+  // Función para re-consultar la caja nocturna y conteos desde el servidor / Datalive
   const handleRefrescarCajaNoche = async () => {
     if (isReviewMode) return;
     setIsRefreshingCaja(true);
-    showToast('Buscando último cierre de caja nocturno en Datalive...');
+    showToast('Sincronizando datos del último cierre nocturno...');
     try {
-      const res = await fetch('/api/apertura-dia');
+      hasUserEditedRef.current = false;
+      const res = await fetch('/api/apertura-dia?force=1');
+      await fetchAperturaDia();
       if (res.ok) {
         const data = await res.json();
-        const expectedCash = data.efectivoEsperado || data.ultimoTurnoNoche?.cierreCaja?.efectivo_real || data.ultimoTurnoNoche?.cierreCaja?.efectivo_mostrador_sist;
+        const expectedCash =
+          data.efectivoEsperado ||
+          data.ultimoTurnoNoche?.cierreCaja?.efectivo_real ||
+          data.ultimoTurnoNoche?.cierreCaja?.efectivo_mostrador_sist;
         if (expectedCash) {
           setEfectivoContado(expectedCash.toString());
           const shiftDate = data.ultimoTurnoNoche?.fecha || 'ayer';
-          showToast(`✓ Caja Turno Noche (${shiftDate}) detectada: ${fmtMoney(expectedCash)}`);
+          showToast(`✓ Datos de Turno Noche (${shiftDate}) actualizados: ${fmtMoney(expectedCash)}`);
+        } else if (data.ultimoTurnoNoche) {
+          showToast(`✓ Stock del Turno Noche (${data.ultimoTurnoNoche.fecha}) sincronizado.`);
         } else {
           showToast('No se encontró caja cerrada nocturna en Datalive.');
         }
       }
     } catch {
-      showToast('⚠️ Error al consultar caja de Datalive.');
+      showToast('⚠️ Error al consultar datos del cierre nocturno.');
     } finally {
       setIsRefreshingCaja(false);
     }

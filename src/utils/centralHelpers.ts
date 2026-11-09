@@ -59,6 +59,38 @@ export function todayKey(now: Date = new Date()): string {
   }
 }
 
+export function getArgentinaHour(now: Date = new Date()): number {
+  try {
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Argentina/Buenos_Aires',
+      hour: 'numeric',
+      hour12: false,
+    }).formatToParts(now);
+    const h = parseInt(parts.find((p) => p.type === 'hour')?.value || '0', 10);
+    return isNaN(h) ? now.getHours() : h % 24;
+  } catch {
+    return now.getHours();
+  }
+}
+
+/**
+ * Sugiere automáticamente el turno activo según la hora de Argentina y si el turno Mañana de hoy ya cerró:
+ * - Entre las 05:00 y las 16:59 -> 'Mañana' (salvo que Mañana de hoy ya figure cerrado, en cuyo caso pasa a 'Tarde').
+ * - Desde las 17:00 hasta las 04:59 -> 'Tarde'.
+ */
+export function suggestedTurnoForNow(pastTurnos?: { fecha?: string; turno?: string; cerrado?: boolean; autoArchivado?: boolean }[]): 'Mañana' | 'Tarde' {
+  const h = getArgentinaHour();
+  if (h >= 17 || h < CORTE_DIA_OPERATIVO_HS) {
+    return 'Tarde';
+  }
+  const hoy = todayKey();
+  if (Array.isArray(pastTurnos) && pastTurnos.some((t) => t && t.fecha === hoy && t.turno === 'Mañana' && t.cerrado && !t.autoArchivado)) {
+    return 'Tarde';
+  }
+  return 'Mañana';
+}
+
+
 export function fmtDateLabel(k: string): string {
   const p = k.split('-');
   if (p.length < 3) return k;

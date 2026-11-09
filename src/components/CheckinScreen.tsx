@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useCentral } from '../context/CentralContext';
 import { CentralLogo } from './CentralLogo';
 import { ShareAppModal } from './ShareAppModal';
-import { fmtFechaLarga, fmtHora } from '../utils/centralHelpers';
+import { fmtFechaLarga, fmtHora, suggestedTurnoForNow } from '../utils/centralHelpers';
 import { Delete, Check, Smartphone, ArrowLeft, ShieldCheck, Lock, Users, AlertTriangle, KeyRound } from 'lucide-react';
 import { Empleado } from '../types/central';
 
@@ -10,11 +10,11 @@ const MAX_INTENTOS = 3;
 const LOCKOUT_SECONDS = 60;
 
 export const CheckinScreen: React.FC = () => {
-  const { loginWithPin, empleados, currentTurno, cambiarTurnoActual } = useCentral();
+  const { loginWithPin, empleados, pastTurnos } = useCentral();
   
-  // Current time & active turno
+  // Current time & active turno sugerido según franja horaria y cierres del día
   const [clock, setClock] = useState(() => `${fmtFechaLarga()} · ${fmtHora()}`);
-  const [turno, setTurno] = useState<'Mañana' | 'Tarde'>(() => currentTurno || 'Tarde');
+  const [turno, setTurno] = useState<'Mañana' | 'Tarde'>(() => suggestedTurnoForNow(pastTurnos));
 
   // Selected employee in Step 1
   const [selectedEmp, setSelectedEmp] = useState<Empleado | null>(null);
@@ -295,7 +295,6 @@ export const CheckinScreen: React.FC = () => {
             type="button"
             onClick={() => {
               setTurno('Mañana');
-              cambiarTurnoActual('Mañana');
             }}
             className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
               turno === 'Mañana'
@@ -310,7 +309,6 @@ export const CheckinScreen: React.FC = () => {
             type="button"
             onClick={() => {
               setTurno('Tarde');
-              cambiarTurnoActual('Tarde');
             }}
             className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
               turno === 'Tarde'
