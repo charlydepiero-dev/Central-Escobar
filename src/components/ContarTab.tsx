@@ -225,18 +225,18 @@ export const ContarTab: React.FC = () => {
   };
 
   const handleTermineConteo = () => {
+    if (esMia || esAdmin) {
+      handleGuardarCategoria(undefined, true);
+    }
     const res = marcarTerminado();
     if (res.puedeCerrar) {
       cerrarTurnoDefinitivo();
       showToast('¡Turno finalizado! Se abrió el resumen de cierre.');
+    } else if (res.faltantes && res.faltantes.length > 0) {
+      showToast(`Anotamos que terminaste tu parte. Faltan contar: ${res.faltantes.join(', ')}.`);
     } else {
-      let msg = 'Anotamos que terminaste tu parte. ';
-      if (res.faltantes && res.faltantes.length > 0) {
-        msg += `Faltan contar: ${res.faltantes.join(', ')}.`;
-      } else {
-        msg += 'Falta cargar el cierre de caja.';
-      }
-      showToast(msg);
+      showToast('✓ Stock completo y guardado. Ahora cargá y cerrá la Caja para finalizar el turno.');
+      setTimeout(() => setActiveTab('caja'), 1200);
     }
   };
 

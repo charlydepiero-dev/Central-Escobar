@@ -3,6 +3,8 @@ import { pullStateFromDrive, createDebouncedPusher, type DriveSyncConfig } from 
 import {
   pickReferenciaTarde,
   resolveFechaOperativa,
+  resolveEffectiveTurno,
+  parseHourFromHoraStr,
   fechaMenosDias,
   hasRealTurnoData,
   isNightClosureHour,
@@ -524,7 +526,12 @@ const driveStatus: any = {
 };
 const drivePusher = createDebouncedPusher(
   getDriveSyncConfig,
-  () => JSON.stringify(memoryStorage || {}),
+  (remoteState?: any | null) => {
+    if (memoryStorage && remoteState) {
+      mergeRemoteHistoryIntoStorage(memoryStorage, remoteState);
+    }
+    return JSON.stringify(memoryStorage || {});
+  },
   3000,
   (ok, error) => {
     driveStatus.ultimoGuardado = { ok, hora: new Date().toISOString(), error: error || '' };
@@ -534,7 +541,59 @@ function marcarRestauracion(resultado: string, detalle = '') {
   driveStatus.restauracion = { resultado, detalle, hora: new Date().toISOString() };
 }
 
-/** Al arrancar: si Drive tiene un estado más nuevo que el local, se usa el de Drive. */
+/**
+ * Fusiona sin pérdida el historial de turnos (`pastTurnos`) y aperturas (`aperturasDia`)
+ * provenientes de Google Drive dentro de `target`, aplicando luego `reconciliarYRecuperarTurnos`
+ * para que ningún turno cerrado en Render se pierda ni vuelva a contaminarse con etiquetas erróneas.
+ */
+function mergeRemoteHistoryIntoStorage(target: AppStorage, remoteState: any): boolean {
+  if (!target || !remoteState || typeof remoteState !== 'object') return false;
+  let changed = false;
+
+  if (Array.isArray(remoteState.pastTurnos) && remoteState.pastTurnos.length > 0) {
+    if (!Array.isArray(target.pastTurnos)) target.pastTurnos = [];
+    const normalizeShiftKey = (pt: any): string => {
+      const fOp = resolveFechaOperativa(pt) || pt?.fecha || '';
+      const tEf = resolveEffectiveTurno(pt);
+      const rawId = String(pt?.id || '');
+      const cleanId = rawId.replace(/_(Mañana|Tarde)_/, `_${tEf}_`);
+      return cleanId || `${fOp}_${tEf}_${pt?.hora_cierre || ''}`;
+    };
+
+    const existingKeys = new Set(target.pastTurnos.map(normalizeShiftKey));
+    for (const rPt of remoteState.pastTurnos) {
+      if (!rPt) continue;
+      const k = normalizeShiftKey(rPt);
+      if (!existingKeys.has(k)) {
+        target.pastTurnos.push(rPt);
+        existingKeys.add(k);
+        changed = true;
+      }
+    }
+  }
+
+  if (Array.isArray(remoteState.aperturasDia) && remoteState.aperturasDia.length > 0) {
+    if (!Array.isArray(target.aperturasDia)) target.aperturasDia = [];
+    const existingApKeys = new Set(target.aperturasDia.map((a: any) => a?.id || a?.fecha));
+    for (const rAp of remoteState.aperturasDia) {
+      if (!rAp) continue;
+      const k = rAp.id || rAp.fecha;
+      if (k && !existingApKeys.has(k)) {
+        target.aperturasDia.push(rAp);
+        existingApKeys.add(k);
+        changed = true;
+      }
+    }
+  }
+
+  if (reconciliarYRecuperarTurnos(target)) {
+    changed = true;
+  }
+
+  return changed;
+}
+
+/** Al arrancar: restaura y fusiona el estado con Google Drive, reparando turnos mal etiquetados. */
 async function restoreStateFromDrive(): Promise<void> {
   const cfg = getDriveSyncConfig();
   if (!cfg) {
@@ -544,24 +603,37 @@ async function restoreStateFromDrive(): Promise<void> {
   }
   try {
     const remote = await pullStateFromDrive(cfg);
+    let localParsed: any = null;
     let localSavedAt = '';
     try {
-      if (fs.existsSync(STORAGE_FILE)) localSavedAt = String(JSON.parse(fs.readFileSync(STORAGE_FILE, 'utf-8'))?._savedAt || '');
+      if (fs.existsSync(STORAGE_FILE)) {
+        localParsed = JSON.parse(fs.readFileSync(STORAGE_FILE, 'utf-8'));
+        localSavedAt = String(localParsed?._savedAt || '');
+      }
     } catch {}
-    if (remote && remote.state && (!localSavedAt || remote.savedAt > localSavedAt)) {
+
+    const isRenderProd = isProduction || Boolean(process.env.RENDER);
+
+    if (remote && remote.state) {
+      // En entorno de vista previa (AI Studio) siempre priorizar el estado de Drive como base para no pisar a Render.
+      // En Render, usar el más nuevo entre Drive y disco local, pero fusionando siempre pastTurnos y aperturasDia.
+      const useRemoteAsBase = !isRenderProd || !localSavedAt || remote.savedAt >= localSavedAt;
+      const baseState = useRemoteAsBase ? remote.state : (localParsed || remote.state);
+      const secondaryState = useRemoteAsBase ? localParsed : remote.state;
+
       fs.mkdirSync(path.dirname(STORAGE_FILE), { recursive: true });
-      fs.writeFileSync(STORAGE_FILE, JSON.stringify(remote.state, null, 2), 'utf-8');
-      memoryStorage = null; // se vuelve a cargar (y normalizar) desde el archivo
-      console.log(`[DriveSync] Estado restaurado desde Google Drive (guardado ${remote.savedAt || 's/f'}).`);
+      fs.writeFileSync(STORAGE_FILE, JSON.stringify(baseState, null, 2), 'utf-8');
+      memoryStorage = null;
+      const st = readStorage();
+      const mergedOrRepaired = mergeRemoteHistoryIntoStorage(st, secondaryState || remote.state);
+      if (mergedOrRepaired) {
+        writeStorage(st);
+      }
+      console.log(`[DriveSync] Estado sincronizado y verificado con Google Drive (guardado ${remote.savedAt || 's/f'}).`);
       marcarRestauracion('RESTAURADO_DESDE_DRIVE', `Drive guardado ${remote.savedAt || 's/f'}; local ${localSavedAt || 'sin fecha'}`);
     } else if (!remote) {
       console.log('[DriveSync] Drive todavía no tiene estado guardado; se sube el actual.');
       marcarRestauracion('DRIVE_VACIO_SE_SUBE_LOCAL', 'Drive no tenía app-storage.json');
-      readStorage();
-      drivePusher.schedule(1000);
-    } else {
-      console.log('[DriveSync] El estado local es igual o más nuevo que el de Drive; se sube a Drive.');
-      marcarRestauracion('LOCAL_MAS_NUEVO_SE_SUBE_LOCAL', `Drive guardado ${remote.savedAt || 's/f'}; local ${localSavedAt || 'sin fecha'}`);
       readStorage();
       drivePusher.schedule(1000);
     }
@@ -627,7 +699,11 @@ function loadStorageFromDisk(): AppStorage {
           ultimoCierreTarde: parsed.ultimoCierreTarde || null,
           conteoTardeAnterior: parsed.conteoTardeAnterior || null,
         };
-        reconciliarYRecuperarTurnos(loadedStorage);
+        if (reconciliarYRecuperarTurnos(loadedStorage)) {
+          try {
+            fs.writeFileSync(STORAGE_FILE, JSON.stringify(loadedStorage, null, 2), 'utf-8');
+          } catch {}
+        }
         return loadedStorage;
       }
     }
@@ -654,10 +730,13 @@ function areConteosEquivalent(a: any, b: any): boolean {
 
 /**
  * Archiva preventivamente el turnoActivo en `pastTurnos` si tiene conteos o cierre de caja cargados
- * y aún no fue guardado en el historial para esa fecha y turno.
+ * y aún no fue cerrado formalmente para esa fecha y turno.
  */
 function archivarTurnoActivoSiTieneDatos(storage: AppStorage): boolean {
   if (!storage || !storage.turnoActivo) return false;
+  // Si el turnoActivo ya fue cerrado formalmente, ya está en pastTurnos; no crear un duplicado auto-archivado
+  if (storage.turnoActivo.cerrado === true) return false;
+
   const conteosNorm = normalizeConteosServer(storage.conteoActual || {});
   const tieneConteos = Object.keys(conteosNorm).length > 0;
   const cc = storage.cierreCaja || {};
@@ -677,7 +756,7 @@ function archivarTurnoActivoSiTieneDatos(storage: AppStorage): boolean {
 
   // Si ya hay un cierre formal para esa misma fecha y turno, solo completar si al formal le faltaban conteos
   const formalExistente = storage.pastTurnos.find(
-    (p: any) => resolveFechaOperativa(p) === fechaTurno && p.turno === turnoNombre && !p.autoArchivado
+    (p: any) => resolveFechaOperativa(p) === fechaTurno && resolveEffectiveTurno(p) === turnoNombre && !p.autoArchivado
   );
   if (formalExistente) {
     let updated = false;
@@ -693,7 +772,7 @@ function archivarTurnoActivoSiTieneDatos(storage: AppStorage): boolean {
   }
 
   const autoIdx = storage.pastTurnos.findIndex(
-    (p: any) => resolveFechaOperativa(p) === fechaTurno && p.turno === turnoNombre && p.autoArchivado
+    (p: any) => resolveFechaOperativa(p) === fechaTurno && resolveEffectiveTurno(p) === turnoNombre && p.autoArchivado
   );
 
   const horaRef =
@@ -741,8 +820,9 @@ function archivarTurnoActivoSiTieneDatos(storage: AppStorage): boolean {
 
 /**
  * Repara fechas corridas +1 día por el bug UTC después de las 21:00 ART,
- * reclasifica cierres nocturnos accidentales bajo etiqueta 'Mañana',
- * y recupera conteos de Tarde huérfanos en `conteoTardeAnterior` si un cambio de turno los pisó sin archivar.
+ * restaura turnos Mañana cerrados a la tarde (ej. "03:45 p. m." / "04:20 p. m.") que habían sido
+ * mal etiquetados como 'Tarde', elimina duplicados auto-archivados vacíos, y recupera conteos
+ * de Tarde huérfanos en `conteoTardeAnterior` si un cambio de turno los pisó sin archivar.
  */
 function reconciliarYRecuperarTurnos(storage: AppStorage): boolean {
   if (!storage) return false;
@@ -761,17 +841,44 @@ function reconciliarYRecuperarTurnos(storage: AppStorage): boolean {
     }
   }
 
-  // 2) Si un turno fue cerrado en horario nocturno (>=20:00 o <05:00) con etiqueta 'Mañana'
-  // y en esa fecha ya existe otro turno 'Mañana' o no existe 'Tarde', reclasificarlo como 'Tarde'.
+  // 2) Restaurar turnos de la tarde (08:00 a 18:59 o datalive_turno === 'Mañana' o ID _Mañana_)
+  // que quedaron etiquetados como 'Tarde' por el bug de parseo de "03:45 p. m." / "04:20 p. m."
+  for (const pt of storage.pastTurnos) {
+    if (!pt) continue;
+    const realTurno = resolveEffectiveTurno(pt);
+    if (realTurno === 'Mañana' && pt.turno !== 'Mañana') {
+      console.log(
+        `[Reconciliación] Restaurando Turno Mañana mal etiquetado como Tarde: ${pt.id} (${pt.fecha} ${pt.hora_cierre})`
+      );
+      pt.turno = 'Mañana';
+      if (pt.cierreCaja) pt.cierreCaja.turno = 'Mañana';
+      if (typeof pt.id === 'string' && pt.id.includes('_Tarde_')) {
+        pt.id = pt.id.replace('_Tarde_', '_Mañana_');
+      }
+      changed = true;
+    }
+  }
+
+  // 3) Si un turno fue genuinamente cerrado de noche (>=20:00 o <05:00 en formato 24h) con etiqueta 'Mañana'
+  // (y su caja Datalive NO dice 'Mañana') y ese día ya tenía otro cierre Mañana, reclasificarlo como 'Tarde'.
   for (const pt of storage.pastTurnos) {
     if (!pt || pt.turno !== 'Mañana') continue;
+    const dlTurno = String(pt.cierreCaja?.datalive_turno || '').trim().toLowerCase();
+    if (dlTurno === 'mañana') continue;
     const hr = pt.hora_cierre || pt.cierreCaja?.hora || '';
     if (isNightClosureHour(hr) && hasRealTurnoData(pt)) {
+      const tieneOtroManana = storage.pastTurnos.some(
+        (other: any) =>
+          other !== pt &&
+          other.fecha === pt.fecha &&
+          other.turno === 'Mañana' &&
+          !isNightClosureHour(other.hora_cierre || other.cierreCaja?.hora || '')
+      );
       const tieneTardeEseDia = storage.pastTurnos.some(
         (other: any) => other !== pt && other.fecha === pt.fecha && other.turno === 'Tarde' && hasRealTurnoData(other)
       );
-      if (!tieneTardeEseDia) {
-        console.log(`[Reconciliación] Reclasificando cierre nocturno (${hr}) de ${pt.fecha} como Turno Tarde`);
+      if (tieneOtroManana && !tieneTardeEseDia) {
+        console.log(`[Reconciliación] Reclasificando cierre nocturno real (${hr}) de ${pt.fecha} como Turno Tarde`);
         pt.turno = 'Tarde';
         if (pt.cierreCaja) pt.cierreCaja.turno = 'Tarde';
         changed = true;
@@ -779,9 +886,55 @@ function reconciliarYRecuperarTurnos(storage: AppStorage): boolean {
     }
   }
 
-  // 3) Si para ayer (`ayerIso`) no quedó ningún turno Tarde en `pastTurnos`, pero `conteoTardeAnterior`
-  // tiene conteos reales distintos del último turno Tarde más viejo (ej. conteos del sábado a la noche que
-  // quedaron en `conteoTardeAnterior` antes de pasar a Mañana el domingo), reconstruir el turno de ayer.
+  // 4) Eliminar turnos auto-archivados redundantes cuando ya existe un cierre formal para esa misma fecha y turno,
+  // y deduplicar por ID normalizado.
+  const deduped: any[] = [];
+  const seenIds = new Set<string>();
+  for (const pt of storage.pastTurnos) {
+    if (!pt) continue;
+    if (pt.autoArchivado) {
+      const formalMatch = storage.pastTurnos.find(
+        (other: any) =>
+          other !== pt &&
+          !other.autoArchivado &&
+          other.fecha === pt.fecha &&
+          other.turno === pt.turno
+      );
+      if (formalMatch) {
+        if (
+          Object.keys(formalMatch.conteos || {}).length === 0 &&
+          Object.keys(pt.conteos || {}).length > 0
+        ) {
+          formalMatch.conteos = pt.conteos;
+        }
+        console.log(`[Reconciliación] Eliminando turno auto-archivado duplicado: ${pt.id}`);
+        changed = true;
+        continue;
+      }
+    }
+    const key = String(pt.id || `${pt.fecha}_${pt.turno}_${pt.hora_cierre}`);
+    if (seenIds.has(key)) {
+      changed = true;
+      continue;
+    }
+    seenIds.add(key);
+    deduped.push(pt);
+  }
+  if (deduped.length !== storage.pastTurnos.length) {
+    storage.pastTurnos = deduped;
+    changed = true;
+  }
+
+  // 5) Si `ultimoCierreTarde` quedó apuntando a un turno Mañana (por el bug de "04:21 p. m."),
+  // actualizarlo al último cierre Tarde real.
+  if (storage.ultimoCierreTarde && resolveEffectiveTurno(storage.ultimoCierreTarde) !== 'Tarde') {
+    const realLastTarde = storage.pastTurnos.find((pt: any) => pt && resolveEffectiveTurno(pt) === 'Tarde') || null;
+    storage.ultimoCierreTarde = realLastTarde;
+    changed = true;
+  }
+
+  // 6) Si para ayer (`ayerIso`) no quedó ningún turno Tarde en `pastTurnos`, pero `conteoTardeAnterior`
+  // tiene conteos reales distintos de cualquier turno ya guardado (ni Mañana ni Tarde), reconstruir el turno de ayer.
   const todayIso = getTodayIso();
   const ayerIso = fechaMenosDias(todayIso, 1);
   const existeTardeAyer = storage.pastTurnos.some(
@@ -791,7 +944,7 @@ function reconciliarYRecuperarTurnos(storage: AppStorage): boolean {
   if (!existeTardeAyer && storage.conteoTardeAnterior && Object.keys(storage.conteoTardeAnterior).length > 0) {
     const conteosRecuperados = normalizeConteosServer(storage.conteoTardeAnterior);
     const yaEstaEnOtroTurno = storage.pastTurnos.some(
-      (pt: any) => pt && pt.turno === 'Tarde' && areConteosEquivalent(pt.conteos, conteosRecuperados)
+      (pt: any) => pt && areConteosEquivalent(pt.conteos, conteosRecuperados)
     );
     if (!yaEstaEnOtroTurno) {
       let sampleEmp = 'Colaborador';
@@ -820,7 +973,7 @@ function reconciliarYRecuperarTurnos(storage: AppStorage): boolean {
         cerrado_por: sampleEmp,
         cierreCaja: cajaNoUsadaEnViejo
           ? { ...ccActual, existe: true, fecha: ayerIso, turno: 'Tarde' }
-          : storage.ultimoCierreTarde?.fecha === ayerIso
+          : storage.ultimoCierreTarde?.fecha === ayerIso && storage.ultimoCierreTarde?.turno === 'Tarde'
           ? storage.ultimoCierreTarde.cierreCaja
           : { existe: false, fecha: ayerIso, turno: 'Tarde' },
         conteos: conteosRecuperados,
@@ -836,6 +989,7 @@ function reconciliarYRecuperarTurnos(storage: AppStorage): boolean {
   if (changed) {
     storage.pastTurnos.sort((a: any, b: any) => {
       if (a.fecha !== b.fecha) return String(b.fecha || '').localeCompare(String(a.fecha || ''));
+      if (a.turno !== b.turno) return a.turno === 'Tarde' ? -1 : 1;
       const timeA = a.timestamp || `${a.fecha}T${a.hora_cierre || '00:00'}`;
       const timeB = b.timestamp || `${b.fecha}T${b.hora_cierre || '00:00'}`;
       return timeB.localeCompare(timeA);
@@ -852,7 +1006,7 @@ function readStorage(): AppStorage {
   return memoryStorage;
 }
 
-function writeStorage(data: AppStorage): void {
+function writeStorage(data: AppStorage, options?: { skipDrivePush?: boolean }): void {
   try {
     (data as any)._savedAt = new Date().toISOString();
     memoryStorage = data;
@@ -866,7 +1020,9 @@ function writeStorage(data: AppStorage): void {
   } catch (err) {
     console.error('[Storage] Error guardando archivo atómico de almacenamiento:', err);
   }
-  drivePusher.schedule();
+  if (!options?.skipDrivePush) {
+    drivePusher.schedule();
+  }
 }
 
 function dlExtraerCookies(headers: Headers): string {
@@ -2315,10 +2471,50 @@ app.get('/api/turno/state', (_req, res) => {
     }
     storage.turnoActivo.fecha = todayIso;
     dirty = true;
+  } else if (
+    storage.turnoActivo &&
+    storage.turnoActivo.fecha === todayIso &&
+    storage.turnoActivo.turno === 'Mañana'
+  ) {
+    const arHour = getArgentinaHour();
+    if (arHour >= 18 || arHour < 5) {
+      const yaCerroMananaHoy = (storage.pastTurnos || []).some(
+        (pt: any) => resolveFechaOperativa(pt) === todayIso && resolveEffectiveTurno(pt) === 'Mañana' && !pt.autoArchivado
+      );
+      if (yaCerroMananaHoy) {
+        if (storage.turnoActivo.cerrado === true) {
+          storage.conteoActual = {};
+          storage.reclamos = {};
+          storage.cierreCaja = {
+            existe: false,
+            fecha: todayIso,
+            turno: 'Tarde',
+            postnet_amarillo: 0,
+            postnet_rosa: 0,
+            postnet_blanco: 0,
+            online_local_sist: 0,
+            efectivo_real: 0,
+            efectivo_mostrador_sist: 0,
+            observaciones: '',
+            empleado: '',
+            hora: '',
+          };
+          storage.turnoActivo.cerrado = false;
+          delete (storage.turnoActivo as any).cerrado_por;
+          delete (storage.turnoActivo as any).hora_cierre;
+        } else if (storage.cierreCaja) {
+          storage.cierreCaja.turno = 'Tarde';
+        }
+        storage.turnoActivo.turno = 'Tarde';
+        storage.turnoActivo.abierto = true;
+        dirty = true;
+      }
+    }
   }
 
   if (dirty) {
-    writeStorage(storage);
+    const isRenderProd = isProduction || Boolean(process.env.RENDER);
+    writeStorage(storage, { skipDrivePush: !isRenderProd });
   }
 
   const pastTurnos = storage.pastTurnos || [];
@@ -2587,7 +2783,8 @@ app.post('/api/conteo/save', (req, res) => {
     }
   }
 
-  if (storage.turnoActivo?.turno === 'Tarde') {
+  const arHourSave = getArgentinaHour();
+  if (storage.turnoActivo?.turno === 'Tarde' || arHourSave >= 18 || arHourSave < 5) {
     storage.conteoTardeAnterior = { ...storage.conteoActual };
   }
 
@@ -2630,15 +2827,16 @@ app.post('/api/turno/cerrar', (req, res) => {
 
   let t = (turno || storage.turnoActivo?.turno || 'Mañana') as 'Mañana' | 'Tarde';
   const arHour = getArgentinaHour();
-  // Si se cierra en horario nocturno (>=19 hs o <05 hs) y quedó seleccionado 'Mañana' por accidente,
-  // clasificarlo automáticamente como 'Tarde' para que la Apertura del día siguiente lo tome.
-  if (t === 'Mañana' && (isNightClosureHour(hr) || arHour >= 19 || arHour < 5)) {
-    const yaCerroMananaHoy = (storage.pastTurnos || []).some(
-      (pt: any) => resolveFechaOperativa(pt) === f && pt.turno === 'Mañana' && !pt.autoArchivado
-    );
-    if (yaCerroMananaHoy || arHour >= 20 || arHour < 5 || isNightClosureHour(hr)) {
-      t = 'Tarde';
-    }
+  const dlTurno = String(req.body?.cierreCaja?.datalive_turno || storage.cierreCaja?.datalive_turno || '').trim().toLowerCase();
+  // Si se cierra genuinamente en horario nocturno (>=20 hs o <05 hs en formato 24h) y quedó seleccionado 'Mañana' por accidente
+  // (y la caja Datalive no es de Mañana), clasificarlo automáticamente como 'Tarde'.
+  if (t === 'Mañana' && dlTurno !== 'mañana' && (isNightClosureHour(hr) || arHour >= 20 || arHour < 5)) {
+    t = 'Tarde';
+  }
+  // Si por error el selector estaba en 'Tarde' pero la caja Datalive es de 'Mañana' y se está cerrando de día/tarde (<19 hs), mantener 'Mañana'
+  const parsedHr = parseHourFromHoraStr(hr);
+  if (t === 'Tarde' && dlTurno === 'mañana' && parsedHr !== null && parsedHr >= 8 && parsedHr < 19) {
+    t = 'Mañana';
   }
 
   // FIX: antes se ignoraba body.cerrado_por y se usaba el valor viejo de turnoActivo (siempre el mismo empleado).
@@ -2904,12 +3102,21 @@ app.get('/api/apertura-dia', async (req, res) => {
     turnoNocheOut.sistemaStock = normalizeSistemaServer(turnoNocheOut.sistemaStock);
   }
 
-  const efectivoEsperado =
+  const ayerIso = fechaMenosDias(todayIso, 1);
+  const turnoNocheEsDeAyer = Boolean(turnoNoche && turnoNoche.fecha === ayerIso);
+  const efectivoTurnoNoche =
     (Number(turnoNoche?.cierreCaja?.efectivo_real) > 0 ? Number(turnoNoche.cierreCaja.efectivo_real) : null) ??
     (Number(turnoNoche?.cierreCaja?.efectivo_mostrador_sist) > 0
       ? Number(turnoNoche.cierreCaja.efectivo_mostrador_sist)
-      : null) ??
-    (dataliveNocheInfo?.teoricoCaja || 0);
+      : null);
+
+  // Si hay cierre de Turno Tarde de ayer con efectivo, se usa ese valor.
+  // Si ayer a la noche no cerraron caja en la app (turnoNoche es de hace más días o nulo), usar el teórico de la caja nocturna de Datalive.
+  const efectivoEsperado =
+    (turnoNocheEsDeAyer && efectivoTurnoNoche !== null ? efectivoTurnoNoche : null) ??
+    (Number(dataliveNocheInfo?.teoricoCaja) > 0 ? Number(dataliveNocheInfo.teoricoCaja) : null) ??
+    efectivoTurnoNoche ??
+    0;
 
   return res.json({
     ok: true,

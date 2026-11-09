@@ -1,0 +1,5311 @@
+{
+  "datalive": {
+    "usuario": "principal.centralescobar",
+    "clave": "escobar28",
+    "token": "",
+    "scriptUrl": "",
+    "apiEndpoint": "https://vm4.zona.dlsrvz.com/central/sistema/prd/"
+  },
+  "google": {
+    "spreadsheetId": "",
+    "spreadsheetUrl": "",
+    "accountEmail": "charlydepiero@gmail.com",
+    "driveScriptUrl": "",
+    "targetFolder": "Reportes Cierre de Turno - Escobar",
+    "lastSync": "",
+    "lastDriveUpload": "2026-11-09T19:21:57.050Z",
+    "lastDriveUrl": "https://drive.google.com/file/d/1z0bqSA_Qwzc4doaN4YpF59Np638bzunN/view?usp=drivesdk"
+  },
+  "empleados": [
+    {
+      "nombre": "Tiara",
+      "pin": "1111",
+      "activo": true,
+      "rol": "empleado",
+      "creado": "2026-01-01T00:00:00Z"
+    },
+    {
+      "nombre": "Mai",
+      "pin": "2222",
+      "activo": true,
+      "rol": "empleado",
+      "creado": "2026-01-01T00:00:00Z"
+    },
+    {
+      "nombre": "Fati",
+      "pin": "3333",
+      "activo": true,
+      "rol": "empleado",
+      "creado": "2026-01-01T00:00:00Z"
+    },
+    {
+      "nombre": "Axel",
+      "pin": "4444",
+      "activo": true,
+      "rol": "empleado",
+      "creado": "2026-01-01T00:00:00Z"
+    },
+    {
+      "nombre": "Vero",
+      "pin": "5555",
+      "activo": true,
+      "rol": "empleado",
+      "creado": "2026-01-01T00:00:00Z"
+    },
+    {
+      "nombre": "Yamil",
+      "pin": "6666",
+      "activo": true,
+      "rol": "empleado",
+      "creado": "2026-01-01T00:00:00Z"
+    },
+    {
+      "nombre": "Charly",
+      "pin": "1234",
+      "activo": true,
+      "rol": "admin",
+      "creado": "2026-01-01T00:00:00Z"
+    },
+    {
+      "nombre": "Luis",
+      "pin": "4321",
+      "activo": true,
+      "rol": "admin",
+      "creado": "2026-01-01T00:00:00Z"
+    },
+    {
+      "nombre": "Admin",
+      "pin": "170226",
+      "activo": true,
+      "rol": "admin",
+      "oculto": true,
+      "creado": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "turnoActivo": {
+    "fecha": "2026-11-09",
+    "turno": "Tarde",
+    "abierto": true,
+    "cerrado": false,
+    "apertura": {
+      "efectivo_anterior_esperado": 301050,
+      "efectivo_convalidado": 301050,
+      "diferencia_apertura": 0,
+      "observaciones": "Apertura del día registrada"
+    },
+    "abierto_por": "Fati",
+    "hora_apertura": "04:00 p. m."
+  },
+  "reclamos": {},
+  "conteoActual": {},
+  "cierreCaja": {
+    "existe": false,
+    "fecha": "2026-11-09",
+    "turno": "Tarde",
+    "postnet_amarillo": 0,
+    "postnet_rosa": 0,
+    "postnet_blanco": 0,
+    "online_local_sist": 0,
+    "efectivo_real": 0,
+    "efectivo_mostrador_sist": 0,
+    "observaciones": "",
+    "empleado": "",
+    "hora": ""
+  },
+  "sistemaStock": {
+    "c-10967": {
+      "stock": 218,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-11472": {
+      "stock": 125,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10957": {
+      "stock": 434,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10959": {
+      "stock": 144,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10956": {
+      "stock": 460,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10963": {
+      "stock": 68,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-14151": {
+      "stock": 480,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10965": {
+      "stock": 22,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10955": {
+      "stock": 1115,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10960": {
+      "stock": 310,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10969": {
+      "stock": 100,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10964": {
+      "stock": 71,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10975": {
+      "stock": 33,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10976": {
+      "stock": 45,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10979": {
+      "stock": 47,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10977": {
+      "stock": 25,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-11027": {
+      "stock": 3,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-22449": {
+      "stock": 18,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-11017": {
+      "stock": 23,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-11018": {
+      "stock": 27,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-11025": {
+      "stock": 13,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-11026": {
+      "stock": 41,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-27749": {
+      "stock": 2412,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10981": {
+      "stock": 9,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10982": {
+      "stock": 14,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10983": {
+      "stock": 1,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-10984": {
+      "stock": 0,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-17966": {
+      "stock": 40,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-17968": {
+      "stock": 40,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-17967": {
+      "stock": 3,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-13944": {
+      "stock": 0,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-13943": {
+      "stock": 1,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-13942": {
+      "stock": 4,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-22445": {
+      "stock": 7,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-11475": {
+      "stock": 56,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-94309": {
+      "stock": 40,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-11467": {
+      "stock": 20,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-11420": {
+      "stock": 35,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-13428": {
+      "stock": 44,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-83764": {
+      "stock": 5,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-83765": {
+      "stock": 17,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-28708": {
+      "stock": 15,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-12844": {
+      "stock": 2,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-13427": {
+      "stock": 11,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-11465": {
+      "stock": 0,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-87757": {
+      "stock": 8,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-82049": {
+      "stock": 15,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-90682": {
+      "stock": 3,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-28707": {
+      "stock": 0,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-94301": {
+      "stock": 2,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-22458": {
+      "stock": 5,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-96454": {
+      "stock": 2,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-96455": {
+      "stock": 0,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-96456": {
+      "stock": 6,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    },
+    "c-96457": {
+      "stock": 0,
+      "actualizado": "2026-11-09T19:29:32.562Z"
+    }
+  },
+  "pastTurnos": [
+    {
+      "id": "turno_2026-11-09_Mañana_1794252108068",
+      "timestamp": "2026-11-09T19:21:48.069Z",
+      "fecha": "2026-11-09",
+      "turno": "Mañana",
+      "cerrado": true,
+      "hora_cierre": "04:21 p. m.",
+      "cerrado_por": "Fati",
+      "pdfUrl": "",
+      "cierreCaja": {
+        "existe": true,
+        "fecha": "2026-11-09",
+        "turno": "Mañana",
+        "postnet_amarillo": 0,
+        "postnet_rosa": 0,
+        "postnet_blanco": 122650,
+        "online_local_sist": 122650,
+        "efectivo_real": 118650,
+        "efectivo_mostrador_sist": 116540,
+        "observaciones": "",
+        "empleado": "Fati",
+        "hora": "04:21 p. m.",
+        "datalive_turno": "Mañana",
+        "diferencia_efectivo": 2110,
+        "total_digital": 122650,
+        "total_recaudacion": 241300
+      },
+      "conteos": {
+        "c-11027": {
+          "ubic": {
+            "Cruda": 3,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:05 p. m."
+        },
+        "c-22449": {
+          "ubic": {
+            "Cruda": 18,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:05 p. m."
+        },
+        "c-11017": {
+          "ubic": {
+            "Cruda": 35,
+            "Cocida": 14
+          },
+          "empleado": "Fati",
+          "hora": "04:05 p. m."
+        },
+        "c-11018": {
+          "ubic": {
+            "Cruda": 55,
+            "Cocida": 38
+          },
+          "empleado": "Fati",
+          "hora": "04:05 p. m."
+        },
+        "c-11025": {
+          "ubic": {
+            "Cruda": 35,
+            "Cocida": 10
+          },
+          "empleado": "Fati",
+          "hora": "04:05 p. m."
+        },
+        "c-11026": {
+          "ubic": {
+            "Cruda": 95,
+            "Cocida": 5
+          },
+          "empleado": "Fati",
+          "hora": "04:05 p. m."
+        },
+        "c-27749": {
+          "ubic": {
+            "Cruda": 2379,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:05 p. m."
+        },
+        "c-10981": {
+          "ubic": {
+            "Freezer": 9,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:06 p. m."
+        },
+        "c-10982": {
+          "ubic": {
+            "Freezer": 14,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:06 p. m."
+        },
+        "c-10983": {
+          "ubic": {
+            "Freezer": 1,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:06 p. m."
+        },
+        "c-10984": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:06 p. m."
+        },
+        "c-22445": {
+          "ubic": {
+            "Freezer": 1,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:06 p. m."
+        },
+        "c-17966": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:06 p. m."
+        },
+        "c-17968": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:06 p. m."
+        },
+        "c-17967": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:06 p. m."
+        },
+        "c-13944": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:06 p. m."
+        },
+        "c-13943": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:06 p. m."
+        },
+        "c-13942": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:06 p. m."
+        },
+        "c-10967": {
+          "ubic": {
+            "Freezer": 120,
+            "Heladera": 90,
+            "Cocidas heladera": 8
+          },
+          "empleado": "Fati",
+          "hora": "04:10 p. m."
+        },
+        "c-11472": {
+          "ubic": {
+            "Freezer": 60,
+            "Heladera": 60,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:10 p. m."
+        },
+        "c-10957": {
+          "ubic": {
+            "Freezer": 330,
+            "Heladera": 90,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:10 p. m."
+        },
+        "c-10959": {
+          "ubic": {
+            "Freezer": 60,
+            "Heladera": 75,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:10 p. m."
+        },
+        "c-10956": {
+          "ubic": {
+            "Freezer": 360,
+            "Heladera": 90,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:10 p. m."
+        },
+        "c-10963": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 60,
+            "Cocidas heladera": 6
+          },
+          "empleado": "Fati",
+          "hora": "04:10 p. m."
+        },
+        "c-14151": {
+          "ubic": {
+            "Freezer": 360,
+            "Heladera": 120,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:10 p. m."
+        },
+        "c-10965": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 21,
+            "Cocidas heladera": 1
+          },
+          "empleado": "Fati",
+          "hora": "04:10 p. m."
+        },
+        "c-10955": {
+          "ubic": {
+            "Freezer": 810,
+            "Heladera": 295,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:10 p. m."
+        },
+        "c-10960": {
+          "ubic": {
+            "Freezer": 150,
+            "Heladera": 154,
+            "Cocidas heladera": 4
+          },
+          "empleado": "Fati",
+          "hora": "04:10 p. m."
+        },
+        "c-10969": {
+          "ubic": {
+            "Freezer": 30,
+            "Heladera": 60,
+            "Cocidas heladera": 1
+          },
+          "empleado": "Fati",
+          "hora": "04:10 p. m."
+        },
+        "c-10964": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 73,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:10 p. m."
+        },
+        "c-10975": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 31,
+            "Cocidas heladera": 2
+          },
+          "empleado": "Fati",
+          "hora": "04:10 p. m."
+        },
+        "c-10976": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 45,
+            "Cocidas heladera": 3
+          },
+          "empleado": "Fati",
+          "hora": "04:10 p. m."
+        },
+        "c-10979": {
+          "ubic": {
+            "Freezer": 30,
+            "Heladera": 9,
+            "Cocidas heladera": 2
+          },
+          "empleado": "Fati",
+          "hora": "04:10 p. m."
+        },
+        "c-10977": {
+          "ubic": {
+            "Freezer": 30,
+            "Heladera": 0,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:10 p. m."
+        },
+        "c-11475": {
+          "ubic": {
+            "Heladera": 40,
+            "Depósito": 18
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-94309": {
+          "ubic": {
+            "Heladera": 21,
+            "Depósito": 19
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-11467": {
+          "ubic": {
+            "Heladera": 14,
+            "Depósito": 6
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-11420": {
+          "ubic": {
+            "Heladera": 33,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-13428": {
+          "ubic": {
+            "Heladera": 14,
+            "Depósito": 32
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-83764": {
+          "ubic": {
+            "Heladera": 5,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-83765": {
+          "ubic": {
+            "Heladera": 15,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-28708": {
+          "ubic": {
+            "Heladera": 15,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-12844": {
+          "ubic": {
+            "Heladera": 3,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-13427": {
+          "ubic": {
+            "Heladera": 6,
+            "Depósito": 6
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-87757": {
+          "ubic": {
+            "Heladera": 6,
+            "Depósito": 2
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-82049": {
+          "ubic": {
+            "Heladera": 7,
+            "Depósito": 8
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-90682": {
+          "ubic": {
+            "Heladera": 3,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-94301": {
+          "ubic": {
+            "Heladera": 2,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-22458": {
+          "ubic": {
+            "Heladera": 5,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-96456": {
+          "ubic": {
+            "Heladera": 6,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-11465": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-28707": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-96454": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-96455": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        },
+        "c-96457": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:12 p. m."
+        }
+      },
+      "sistemaStock": {
+        "c-10967": {
+          "stock": 218,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-11472": {
+          "stock": 125,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10957": {
+          "stock": 434,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10959": {
+          "stock": 144,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10956": {
+          "stock": 460,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10963": {
+          "stock": 68,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-14151": {
+          "stock": 480,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10965": {
+          "stock": 22,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10955": {
+          "stock": 1115,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10960": {
+          "stock": 310,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10969": {
+          "stock": 100,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10964": {
+          "stock": 71,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10975": {
+          "stock": 33,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10976": {
+          "stock": 45,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10979": {
+          "stock": 47,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10977": {
+          "stock": 25,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-11027": {
+          "stock": 3,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-22449": {
+          "stock": 18,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-11017": {
+          "stock": 25,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-11018": {
+          "stock": 27,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-11025": {
+          "stock": 15,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-11026": {
+          "stock": 41,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-27749": {
+          "stock": 2430,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10981": {
+          "stock": 9,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10982": {
+          "stock": 14,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10983": {
+          "stock": 1,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-10984": {
+          "stock": 0,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-17966": {
+          "stock": 40,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-17968": {
+          "stock": 40,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-17967": {
+          "stock": 3,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-13944": {
+          "stock": 0,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-13943": {
+          "stock": 1,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-13942": {
+          "stock": 4,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-22445": {
+          "stock": 7,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-11475": {
+          "stock": 56,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-94309": {
+          "stock": 40,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-11467": {
+          "stock": 20,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-11420": {
+          "stock": 36,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-13428": {
+          "stock": 44,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-83764": {
+          "stock": 5,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-83765": {
+          "stock": 17,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-28708": {
+          "stock": 15,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-12844": {
+          "stock": 2,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-13427": {
+          "stock": 11,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-11465": {
+          "stock": 0,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-87757": {
+          "stock": 8,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-82049": {
+          "stock": 15,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-90682": {
+          "stock": 3,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-28707": {
+          "stock": 0,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-94301": {
+          "stock": 2,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-22458": {
+          "stock": 5,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-96454": {
+          "stock": 2,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-96455": {
+          "stock": 0,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-96456": {
+          "stock": 6,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        },
+        "c-96457": {
+          "stock": 0,
+          "actualizado": "2026-11-09T19:16:19.642Z"
+        }
+      },
+      "resumenStock": {
+        "totalSistema": 6662,
+        "totalContado": 6638,
+        "diferenciaTotal": -24,
+        "itemsConDiferencia": 30
+      },
+      "apertura": {
+        "efectivo_anterior_esperado": 301050,
+        "efectivo_convalidado": 301050,
+        "diferencia_apertura": 0,
+        "observaciones": "Apertura del día registrada"
+      }
+    },
+    {
+      "id": "turno_2026-11-08_Mañana_1794163531039",
+      "timestamp": "2026-11-08T18:45:31.039Z",
+      "fecha": "2026-11-08",
+      "turno": "Mañana",
+      "cerrado": true,
+      "hora_cierre": "03:45 p. m.",
+      "cerrado_por": "Fati",
+      "pdfUrl": "/api/reportes/pdf/Acta_General_Cierre_Escobar_2026-11-08_mañana.pdf",
+      "cierreCaja": {
+        "postnet_amarillo": 0,
+        "postnet_rosa": 161700,
+        "postnet_blanco": 0,
+        "online_local_sist": 161700,
+        "efectivo_real": 301050,
+        "efectivo_mostrador_sist": 300500,
+        "observaciones": "",
+        "existe": true,
+        "fecha": "2026-11-08",
+        "turno": "Mañana",
+        "empleado": "Fati",
+        "hora": "03:45 p. m.",
+        "datalive_turno": "Mañana",
+        "diferencia_efectivo": 550,
+        "total_digital": 161700,
+        "total_recaudacion": 462750
+      },
+      "conteos": {
+        "c-10967": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 24,
+            "Cocidas heladera": 10
+          },
+          "empleado": "Fati",
+          "hora": "03:35 p. m."
+        },
+        "c-11472": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 36,
+            "Cocidas heladera": 1
+          },
+          "empleado": "Fati",
+          "hora": "03:35 p. m."
+        },
+        "c-10957": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 89,
+            "Cocidas heladera": 1
+          },
+          "empleado": "Fati",
+          "hora": "03:35 p. m."
+        },
+        "c-10959": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 52,
+            "Cocidas heladera": 5
+          },
+          "empleado": "Fati",
+          "hora": "03:35 p. m."
+        },
+        "c-10956": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 84,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:35 p. m."
+        },
+        "c-10963": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 52,
+            "Cocidas heladera": 2
+          },
+          "empleado": "Fati",
+          "hora": "03:35 p. m."
+        },
+        "c-14151": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 25,
+            "Cocidas heladera": 7
+          },
+          "empleado": "Fati",
+          "hora": "03:35 p. m."
+        },
+        "c-10965": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 44,
+            "Cocidas heladera": 4
+          },
+          "empleado": "Fati",
+          "hora": "03:35 p. m."
+        },
+        "c-10955": {
+          "ubic": {
+            "Freezer": 210,
+            "Heladera": 277,
+            "Cocidas heladera": 19
+          },
+          "empleado": "Fati",
+          "hora": "03:35 p. m."
+        },
+        "c-10960": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 147,
+            "Cocidas heladera": 10
+          },
+          "empleado": "Fati",
+          "hora": "03:35 p. m."
+        },
+        "c-10969": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 50,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:35 p. m."
+        },
+        "c-10964": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 41,
+            "Cocidas heladera": 6
+          },
+          "empleado": "Fati",
+          "hora": "03:35 p. m."
+        },
+        "c-10975": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 4,
+            "Cocidas heladera": 1
+          },
+          "empleado": "Fati",
+          "hora": "03:35 p. m."
+        },
+        "c-10976": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 18,
+            "Cocidas heladera": 1
+          },
+          "empleado": "Fati",
+          "hora": "03:35 p. m."
+        },
+        "c-10979": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 14,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:35 p. m."
+        },
+        "c-10977": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:35 p. m."
+        },
+        "c-11027": {
+          "ubic": {
+            "Cruda": 3,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:30 p. m."
+        },
+        "c-22449": {
+          "ubic": {
+            "Cruda": 18,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:30 p. m."
+        },
+        "c-11017": {
+          "ubic": {
+            "Cruda": 24,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:30 p. m."
+        },
+        "c-11018": {
+          "ubic": {
+            "Cruda": 60,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:30 p. m."
+        },
+        "c-11025": {
+          "ubic": {
+            "Cruda": 15,
+            "Cocida": 8
+          },
+          "empleado": "Fati",
+          "hora": "03:30 p. m."
+        },
+        "c-11026": {
+          "ubic": {
+            "Cruda": 60,
+            "Cocida": 10
+          },
+          "empleado": "Fati",
+          "hora": "03:30 p. m."
+        },
+        "c-27749": {
+          "ubic": {
+            "Cruda": 1704,
+            "Cocida": 11
+          },
+          "empleado": "Fati",
+          "hora": "03:30 p. m."
+        },
+        "c-10981": {
+          "ubic": {
+            "Freezer": 9,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:27 p. m."
+        },
+        "c-10982": {
+          "ubic": {
+            "Freezer": 14,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:27 p. m."
+        },
+        "c-10983": {
+          "ubic": {
+            "Freezer": 1,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:27 p. m."
+        },
+        "c-10984": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:27 p. m."
+        },
+        "c-17966": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:27 p. m."
+        },
+        "c-17968": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:27 p. m."
+        },
+        "c-17967": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:27 p. m."
+        },
+        "c-13944": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:27 p. m."
+        },
+        "c-13943": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:27 p. m."
+        },
+        "c-13942": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:27 p. m."
+        },
+        "c-22445": {
+          "ubic": {
+            "Freezer": 7,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:27 p. m."
+        },
+        "c-11475": {
+          "ubic": {
+            "Heladera": 36,
+            "Depósito": 24
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-94309": {
+          "ubic": {
+            "Heladera": 21,
+            "Depósito": 20
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-11467": {
+          "ubic": {
+            "Heladera": 14,
+            "Depósito": 6
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-11420": {
+          "ubic": {
+            "Heladera": 34,
+            "Depósito": 2
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-13428": {
+          "ubic": {
+            "Heladera": 14,
+            "Depósito": 32
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-83764": {
+          "ubic": {
+            "Heladera": 9,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-83765": {
+          "ubic": {
+            "Heladera": 18,
+            "Depósito": 1
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-28708": {
+          "ubic": {
+            "Heladera": 14,
+            "Depósito": 2
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-12844": {
+          "ubic": {
+            "Heladera": 6,
+            "Depósito": 5
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-13427": {
+          "ubic": {
+            "Heladera": 5,
+            "Depósito": 8
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-11465": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-87757": {
+          "ubic": {
+            "Heladera": 5,
+            "Depósito": 6
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-82049": {
+          "ubic": {
+            "Heladera": 7,
+            "Depósito": 8
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-90682": {
+          "ubic": {
+            "Heladera": 1,
+            "Depósito": 5
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-28707": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-94301": {
+          "ubic": {
+            "Heladera": 2,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-22458": {
+          "ubic": {
+            "Heladera": 7,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-96454": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-96455": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-96456": {
+          "ubic": {
+            "Heladera": 4,
+            "Depósito": 3
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        },
+        "c-96457": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:29 p. m."
+        }
+      },
+      "sistemaStock": {
+        "c-10967": {
+          "stock": 34,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-11472": {
+          "stock": 42,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10957": {
+          "stock": 106,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10959": {
+          "stock": 61,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10956": {
+          "stock": 94,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10963": {
+          "stock": 57,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-14151": {
+          "stock": 31,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10965": {
+          "stock": 47,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10955": {
+          "stock": 517,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10960": {
+          "stock": 160,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10969": {
+          "stock": 51,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10964": {
+          "stock": 45,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10975": {
+          "stock": 5,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10976": {
+          "stock": 16,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10979": {
+          "stock": 19,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10977": {
+          "stock": -4,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-11027": {
+          "stock": 3,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-22449": {
+          "stock": 18,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-11017": {
+          "stock": 5,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-11018": {
+          "stock": 39,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-11025": {
+          "stock": 0,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-11026": {
+          "stock": 58,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-27749": {
+          "stock": 1767,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10981": {
+          "stock": 9,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10982": {
+          "stock": 14,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10983": {
+          "stock": 1,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-10984": {
+          "stock": 0,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-17966": {
+          "stock": 40,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-17968": {
+          "stock": 40,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-17967": {
+          "stock": 3,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-13944": {
+          "stock": 0,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-13943": {
+          "stock": 1,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-13942": {
+          "stock": 4,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-22445": {
+          "stock": 7,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-11475": {
+          "stock": 62,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-94309": {
+          "stock": 41,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-11467": {
+          "stock": 20,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-11420": {
+          "stock": 39,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-13428": {
+          "stock": 44,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-83764": {
+          "stock": 9,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-83765": {
+          "stock": 21,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-28708": {
+          "stock": 16,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-12844": {
+          "stock": 8,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-13427": {
+          "stock": 12,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-11465": {
+          "stock": 0,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-87757": {
+          "stock": 10,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-82049": {
+          "stock": 15,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-90682": {
+          "stock": 6,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-28707": {
+          "stock": 0,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-94301": {
+          "stock": 2,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-22458": {
+          "stock": 7,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-96454": {
+          "stock": 2,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-96455": {
+          "stock": 0,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-96456": {
+          "stock": 7,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        },
+        "c-96457": {
+          "stock": 0,
+          "actualizado": "2026-11-08T18:45:26.411Z"
+        }
+      },
+      "resumenStock": {
+        "totalSistema": 3611,
+        "totalContado": 3497,
+        "diferenciaTotal": -114,
+        "itemsConDiferencia": 32
+      },
+      "apertura": {
+        "efectivo_anterior_esperado": 565030,
+        "efectivo_convalidado": 565030,
+        "diferencia_apertura": 0,
+        "observaciones": "Apertura del día registrada"
+      },
+      "driveUrl": "https://drive.google.com/file/d/1-LlR_uIbEjB3RnM2zBUFMuaqTkcRSa7d/view?usp=drivesdk",
+      "driveFileId": "1-LlR_uIbEjB3RnM2zBUFMuaqTkcRSa7d"
+    },
+    {
+      "id": "turno_2026-11-07_Mañana_1794079215250",
+      "timestamp": "2026-11-07T19:20:15.250Z",
+      "fecha": "2026-11-07",
+      "turno": "Mañana",
+      "cerrado": true,
+      "hora_cierre": "04:20 p. m.",
+      "cerrado_por": "Fati",
+      "pdfUrl": "/api/reportes/pdf/Acta_General_Cierre_Escobar_2026-11-07_mañana.pdf",
+      "cierreCaja": {
+        "postnet_amarillo": 0,
+        "postnet_rosa": 220250,
+        "postnet_blanco": 0,
+        "online_local_sist": 220250,
+        "efectivo_real": 357130,
+        "efectivo_mostrador_sist": 351560,
+        "observaciones": "",
+        "existe": true,
+        "fecha": "2026-11-07",
+        "turno": "Mañana",
+        "empleado": "Fati",
+        "hora": "04:20 p. m.",
+        "diferencia_efectivo": 5570,
+        "total_digital": 220250,
+        "total_recaudacion": 577380
+      },
+      "conteos": {
+        "c-11027": {
+          "ubic": {
+            "Cruda": 3,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:54 p. m."
+        },
+        "c-22449": {
+          "ubic": {
+            "Cruda": 19,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:54 p. m."
+        },
+        "c-11017": {
+          "ubic": {
+            "Cruda": 24,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:54 p. m."
+        },
+        "c-11018": {
+          "ubic": {
+            "Cruda": 80,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:54 p. m."
+        },
+        "c-11025": {
+          "ubic": {
+            "Cruda": 40,
+            "Cocida": 8
+          },
+          "empleado": "Fati",
+          "hora": "03:54 p. m."
+        },
+        "c-11026": {
+          "ubic": {
+            "Cruda": 80,
+            "Cocida": 9
+          },
+          "empleado": "Fati",
+          "hora": "03:54 p. m."
+        },
+        "c-27749": {
+          "ubic": {
+            "Cruda": 2173,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:54 p. m."
+        },
+        "c-11475": {
+          "ubic": {
+            "Heladera": 33,
+            "Depósito": 42
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-94309": {
+          "ubic": {
+            "Heladera": 20,
+            "Depósito": 21
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-11467": {
+          "ubic": {
+            "Heladera": 12,
+            "Depósito": 8
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-11420": {
+          "ubic": {
+            "Heladera": 33,
+            "Depósito": 5
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-13428": {
+          "ubic": {
+            "Heladera": 13,
+            "Depósito": 33
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-83764": {
+          "ubic": {
+            "Heladera": 9,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-83765": {
+          "ubic": {
+            "Heladera": 21,
+            "Depósito": 2
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-28708": {
+          "ubic": {
+            "Heladera": 14,
+            "Depósito": 4
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-12844": {
+          "ubic": {
+            "Heladera": 5,
+            "Depósito": 12
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-13427": {
+          "ubic": {
+            "Heladera": 4,
+            "Depósito": 9
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-11465": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-87757": {
+          "ubic": {
+            "Heladera": 4,
+            "Depósito": 8
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-82049": {
+          "ubic": {
+            "Heladera": 8,
+            "Depósito": 8
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-90682": {
+          "ubic": {
+            "Heladera": 2,
+            "Depósito": 5
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-28707": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-94301": {
+          "ubic": {
+            "Heladera": 3,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-22458": {
+          "ubic": {
+            "Heladera": 7,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-96454": {
+          "ubic": {
+            "Heladera": 2,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-96455": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-96456": {
+          "ubic": {
+            "Heladera": 4,
+            "Depósito": 3
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-96457": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-17966": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-17968": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-17967": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-13944": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-13943": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-13942": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-22445": {
+          "ubic": {
+            "Freezer": 1,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:49 p. m."
+        },
+        "c-10981": {
+          "ubic": {
+            "Freezer": 9,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:50 p. m."
+        },
+        "c-10982": {
+          "ubic": {
+            "Freezer": 14,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:50 p. m."
+        },
+        "c-10983": {
+          "ubic": {
+            "Freezer": 1,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:50 p. m."
+        },
+        "c-10984": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "03:50 p. m."
+        },
+        "c-10967": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 79,
+            "Cocidas heladera": 7
+          },
+          "empleado": "Fati",
+          "hora": "04:19 p. m."
+        },
+        "c-11472": {
+          "ubic": {
+            "Freezer": 30,
+            "Heladera": 56,
+            "Cocidas heladera": 6
+          },
+          "empleado": "Fati",
+          "hora": "04:19 p. m."
+        },
+        "c-10957": {
+          "ubic": {
+            "Freezer": 150,
+            "Heladera": 91,
+            "Cocidas heladera": 9
+          },
+          "empleado": "Fati",
+          "hora": "04:19 p. m."
+        },
+        "c-10959": {
+          "ubic": {
+            "Freezer": 30,
+            "Heladera": 53,
+            "Cocidas heladera": 1
+          },
+          "empleado": "Fati",
+          "hora": "04:19 p. m."
+        },
+        "c-10956": {
+          "ubic": {
+            "Freezer": 140,
+            "Heladera": 95,
+            "Cocidas heladera": 7
+          },
+          "empleado": "Fati",
+          "hora": "04:19 p. m."
+        },
+        "c-10963": {
+          "ubic": {
+            "Freezer": 30,
+            "Heladera": 64,
+            "Cocidas heladera": 8
+          },
+          "empleado": "Fati",
+          "hora": "04:19 p. m."
+        },
+        "c-14151": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 116,
+            "Cocidas heladera": 7
+          },
+          "empleado": "Fati",
+          "hora": "04:19 p. m."
+        },
+        "c-10965": {
+          "ubic": {
+            "Freezer": 30,
+            "Heladera": 50,
+            "Cocidas heladera": 2
+          },
+          "empleado": "Fati",
+          "hora": "04:19 p. m."
+        },
+        "c-10955": {
+          "ubic": {
+            "Freezer": 510,
+            "Heladera": 301,
+            "Cocidas heladera": 18
+          },
+          "empleado": "Fati",
+          "hora": "04:19 p. m."
+        },
+        "c-10960": {
+          "ubic": {
+            "Freezer": 120,
+            "Heladera": 149,
+            "Cocidas heladera": 14
+          },
+          "empleado": "Fati",
+          "hora": "04:19 p. m."
+        },
+        "c-10969": {
+          "ubic": {
+            "Freezer": 30,
+            "Heladera": 54,
+            "Cocidas heladera": 8
+          },
+          "empleado": "Fati",
+          "hora": "04:19 p. m."
+        },
+        "c-10964": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 67,
+            "Cocidas heladera": 3
+          },
+          "empleado": "Fati",
+          "hora": "04:19 p. m."
+        },
+        "c-10975": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 12,
+            "Cocidas heladera": 3
+          },
+          "empleado": "Fati",
+          "hora": "04:19 p. m."
+        },
+        "c-10976": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 29,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:19 p. m."
+        },
+        "c-10979": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 29,
+            "Cocidas heladera": 2
+          },
+          "empleado": "Fati",
+          "hora": "04:19 p. m."
+        },
+        "c-10977": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 14,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "04:19 p. m."
+        }
+      },
+      "sistemaStock": {
+        "c-10967": {
+          "stock": 87,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-11472": {
+          "stock": 95,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10957": {
+          "stock": 266,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10959": {
+          "stock": 86,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10956": {
+          "stock": 249,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10963": {
+          "stock": 104,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-14151": {
+          "stock": 125,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10965": {
+          "stock": 82,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10955": {
+          "stock": 840,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10960": {
+          "stock": 283,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10969": {
+          "stock": 94,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10964": {
+          "stock": 70,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10975": {
+          "stock": 16,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10976": {
+          "stock": 27,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10979": {
+          "stock": 32,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10977": {
+          "stock": 14,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-11027": {
+          "stock": 3,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-22449": {
+          "stock": 19,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-11017": {
+          "stock": 13,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-11018": {
+          "stock": 53,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-11025": {
+          "stock": 8,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-11026": {
+          "stock": 72,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-27749": {
+          "stock": 2234,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10981": {
+          "stock": 9,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10982": {
+          "stock": 14,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10983": {
+          "stock": 1,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-10984": {
+          "stock": 0,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-17966": {
+          "stock": 40,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-17968": {
+          "stock": 40,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-17967": {
+          "stock": 3,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-13944": {
+          "stock": 0,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-13943": {
+          "stock": 1,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-13942": {
+          "stock": 4,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-22445": {
+          "stock": 7,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-11475": {
+          "stock": 73,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-94309": {
+          "stock": 41,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-11467": {
+          "stock": 20,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-11420": {
+          "stock": 41,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-13428": {
+          "stock": 44,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-83764": {
+          "stock": 9,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-83765": {
+          "stock": 25,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-28708": {
+          "stock": 18,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-12844": {
+          "stock": 14,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-13427": {
+          "stock": 13,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-11465": {
+          "stock": 0,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-87757": {
+          "stock": 11,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-82049": {
+          "stock": 16,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-90682": {
+          "stock": 7,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-28707": {
+          "stock": 0,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-94301": {
+          "stock": 3,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-22458": {
+          "stock": 7,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-96454": {
+          "stock": 4,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-96455": {
+          "stock": 0,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-96456": {
+          "stock": 7,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        },
+        "c-96457": {
+          "stock": 0,
+          "actualizado": "2026-11-07T19:15:53.454Z"
+        }
+      },
+      "resumenStock": {
+        "totalSistema": 5344,
+        "totalContado": 5239,
+        "diferenciaTotal": -105,
+        "itemsConDiferencia": 30
+      },
+      "apertura": {
+        "efectivo_anterior_esperado": 565030,
+        "efectivo_convalidado": 565030,
+        "diferencia_apertura": 0,
+        "observaciones": "Apertura del día registrada"
+      },
+      "driveUrl": "https://drive.google.com/file/d/1DDvdZoA4oboZT0XEkCmkZb1rksTNFGh-/view?usp=drivesdk",
+      "driveFileId": "1DDvdZoA4oboZT0XEkCmkZb1rksTNFGh-"
+    },
+    {
+      "id": "turno_2026-11-06_Tarde_1794019808984",
+      "timestamp": "2026-11-07T02:50:08.984Z",
+      "fecha": "2026-11-06",
+      "turno": "Tarde",
+      "cerrado": true,
+      "hora_cierre": "11:50 p. m.",
+      "cerrado_por": "Fati",
+      "pdfUrl": "/api/reportes/pdf/Acta_General_Cierre_Escobar_2026-11-06_tarde.pdf",
+      "cierreCaja": {
+        "postnet_amarillo": 225475,
+        "postnet_rosa": 0,
+        "postnet_blanco": 0,
+        "online_local_sist": 225475,
+        "efectivo_real": 565030,
+        "efectivo_mostrador_sist": 564180,
+        "observaciones": "",
+        "existe": true,
+        "fecha": "2026-11-06",
+        "turno": "Tarde",
+        "empleado": "Fati",
+        "hora": "11:50 p. m.",
+        "datalive_turno": "Tarde",
+        "diferencia_efectivo": 850,
+        "total_digital": 225475,
+        "total_recaudacion": 790505
+      },
+      "conteos": {
+        "c-11027": {
+          "ubic": {
+            "Cruda": 3,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:29 p. m."
+        },
+        "c-22449": {
+          "ubic": {
+            "Cruda": 19,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:29 p. m."
+        },
+        "c-11017": {
+          "ubic": {
+            "Cruda": 27,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:29 p. m."
+        },
+        "c-11018": {
+          "ubic": {
+            "Cruda": 62,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:29 p. m."
+        },
+        "c-11025": {
+          "ubic": {
+            "Cruda": 41,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:29 p. m."
+        },
+        "c-11026": {
+          "ubic": {
+            "Cruda": 81,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:29 p. m."
+        },
+        "c-27749": {
+          "ubic": {
+            "Cruda": 2338,
+            "Cocida": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:29 p. m."
+        },
+        "c-10981": {
+          "ubic": {
+            "Freezer": 9,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:30 p. m."
+        },
+        "c-10982": {
+          "ubic": {
+            "Freezer": 14,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:30 p. m."
+        },
+        "c-10983": {
+          "ubic": {
+            "Freezer": 1,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:30 p. m."
+        },
+        "c-10984": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:30 p. m."
+        },
+        "c-17966": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:30 p. m."
+        },
+        "c-17968": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:30 p. m."
+        },
+        "c-17967": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:30 p. m."
+        },
+        "c-13944": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:30 p. m."
+        },
+        "c-13943": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:30 p. m."
+        },
+        "c-13942": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:30 p. m."
+        },
+        "c-22445": {
+          "ubic": {
+            "Freezer": 1,
+            "Heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:30 p. m."
+        },
+        "c-10967": {
+          "ubic": {
+            "Freezer": 30,
+            "Heladera": 90,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:34 p. m."
+        },
+        "c-11472": {
+          "ubic": {
+            "Freezer": 30,
+            "Heladera": 74,
+            "Cocidas heladera": 5
+          },
+          "empleado": "Fati",
+          "hora": "11:34 p. m."
+        },
+        "c-10957": {
+          "ubic": {
+            "Freezer": 210,
+            "Heladera": 86,
+            "Cocidas heladera": 2
+          },
+          "empleado": "Fati",
+          "hora": "11:34 p. m."
+        },
+        "c-10959": {
+          "ubic": {
+            "Freezer": 30,
+            "Heladera": 71,
+            "Cocidas heladera": 4
+          },
+          "empleado": "Fati",
+          "hora": "11:34 p. m."
+        },
+        "c-10956": {
+          "ubic": {
+            "Freezer": 200,
+            "Heladera": 95,
+            "Cocidas heladera": 4
+          },
+          "empleado": "Fati",
+          "hora": "11:34 p. m."
+        },
+        "c-10963": {
+          "ubic": {
+            "Freezer": 60,
+            "Heladera": 55,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:34 p. m."
+        },
+        "c-14151": {
+          "ubic": {
+            "Freezer": 60,
+            "Heladera": 116,
+            "Cocidas heladera": 3
+          },
+          "empleado": "Fati",
+          "hora": "11:34 p. m."
+        },
+        "c-10965": {
+          "ubic": {
+            "Freezer": 30,
+            "Heladera": 75,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:34 p. m."
+        },
+        "c-10955": {
+          "ubic": {
+            "Freezer": 660,
+            "Heladera": 290,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:34 p. m."
+        },
+        "c-10960": {
+          "ubic": {
+            "Freezer": 180,
+            "Heladera": 140,
+            "Cocidas heladera": 2
+          },
+          "empleado": "Fati",
+          "hora": "11:34 p. m."
+        },
+        "c-10969": {
+          "ubic": {
+            "Freezer": 30,
+            "Heladera": 71,
+            "Cocidas heladera": 4
+          },
+          "empleado": "Fati",
+          "hora": "11:34 p. m."
+        },
+        "c-10964": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 77,
+            "Cocidas heladera": 8
+          },
+          "empleado": "Fati",
+          "hora": "11:34 p. m."
+        },
+        "c-10975": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 27,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:34 p. m."
+        },
+        "c-10976": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 32,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:34 p. m."
+        },
+        "c-10979": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 32,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:34 p. m."
+        },
+        "c-10977": {
+          "ubic": {
+            "Freezer": 0,
+            "Heladera": 17,
+            "Cocidas heladera": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:34 p. m."
+        },
+        "c-11475": {
+          "ubic": {
+            "Heladera": 42,
+            "Depósito": 42
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-94309": {
+          "ubic": {
+            "Heladera": 21,
+            "Depósito": 21
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-11467": {
+          "ubic": {
+            "Heladera": 13,
+            "Depósito": 8
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-11420": {
+          "ubic": {
+            "Heladera": 34,
+            "Depósito": 5
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-13428": {
+          "ubic": {
+            "Heladera": 14,
+            "Depósito": 33
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-83764": {
+          "ubic": {
+            "Heladera": 10,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-83765": {
+          "ubic": {
+            "Heladera": 21,
+            "Depósito": 2
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-28708": {
+          "ubic": {
+            "Heladera": 14,
+            "Depósito": 4
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-12844": {
+          "ubic": {
+            "Heladera": 7,
+            "Depósito": 12
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-13427": {
+          "ubic": {
+            "Heladera": 5,
+            "Depósito": 9
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-11465": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-87757": {
+          "ubic": {
+            "Heladera": 5,
+            "Depósito": 8
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-82049": {
+          "ubic": {
+            "Heladera": 8,
+            "Depósito": 8
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-90682": {
+          "ubic": {
+            "Heladera": 2,
+            "Depósito": 5
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-28707": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-94301": {
+          "ubic": {
+            "Heladera": 3,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-22458": {
+          "ubic": {
+            "Heladera": 7,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-96454": {
+          "ubic": {
+            "Heladera": 4,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-96455": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-96456": {
+          "ubic": {
+            "Heladera": 4,
+            "Depósito": 3
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        },
+        "c-96457": {
+          "ubic": {
+            "Heladera": 0,
+            "Depósito": 0
+          },
+          "empleado": "Fati",
+          "hora": "11:38 p. m."
+        }
+      },
+      "sistemaStock": {
+        "c-10967": {
+          "stock": 121,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-11472": {
+          "stock": 113,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10957": {
+          "stock": 314,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10959": {
+          "stock": 107,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10956": {
+          "stock": 305,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10963": {
+          "stock": 116,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-14151": {
+          "stock": 180,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10965": {
+          "stock": 105,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10955": {
+          "stock": 962,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10960": {
+          "stock": 324,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10969": {
+          "stock": 107,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10964": {
+          "stock": 83,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10975": {
+          "stock": 28,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10976": {
+          "stock": 30,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10979": {
+          "stock": 33,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10977": {
+          "stock": 17,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-11027": {
+          "stock": 3,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-22449": {
+          "stock": 19,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-11017": {
+          "stock": 15,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-11018": {
+          "stock": 60,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-11025": {
+          "stock": 10,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-11026": {
+          "stock": 79,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-27749": {
+          "stock": 2398,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10981": {
+          "stock": 9,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10982": {
+          "stock": 14,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10983": {
+          "stock": 1,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-10984": {
+          "stock": 0,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-17966": {
+          "stock": 40,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-17968": {
+          "stock": 40,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-17967": {
+          "stock": 3,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-13944": {
+          "stock": 0,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-13943": {
+          "stock": 1,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-13942": {
+          "stock": 4,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-22445": {
+          "stock": 7,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-11475": {
+          "stock": 81,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-94309": {
+          "stock": 42,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-11467": {
+          "stock": 21,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-11420": {
+          "stock": 42,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-13428": {
+          "stock": 45,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-83764": {
+          "stock": 10,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-83765": {
+          "stock": 25,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-28708": {
+          "stock": 18,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-12844": {
+          "stock": 16,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-13427": {
+          "stock": 14,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-11465": {
+          "stock": 0,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-87757": {
+          "stock": 13,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-82049": {
+          "stock": 16,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-90682": {
+          "stock": 7,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-28707": {
+          "stock": 0,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-94301": {
+          "stock": 3,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-22458": {
+          "stock": 7,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-96454": {
+          "stock": 6,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-96455": {
+          "stock": 0,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-96456": {
+          "stock": 7,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        },
+        "c-96457": {
+          "stock": 0,
+          "actualizado": "2026-11-07T02:41:40.350Z"
+        }
+      },
+      "resumenStock": {
+        "totalSistema": 6021,
+        "totalContado": 5870,
+        "diferenciaTotal": -151,
+        "itemsConDiferencia": 31
+      },
+      "apertura": null,
+      "driveUrl": "https://drive.google.com/file/d/1GlitG9EGbEK-Thfnn7-OFS5EWfk4zYky/view?usp=drivesdk",
+      "driveFileId": "1GlitG9EGbEK-Thfnn7-OFS5EWfk4zYky"
+    }
+  ],
+  "aperturasDia": [
+    {
+      "id": "ap-1794250827990",
+      "fecha": "2026-11-09",
+      "hora": "04:00 p. m.",
+      "empleado": "Fati",
+      "turnoAnteriorFecha": "2026-11-08",
+      "turnoAnteriorTurno": "Tarde",
+      "turnoAnteriorCerradoPor": "Fati",
+      "efectivoAnteriorEsperado": 301050,
+      "efectivoContadoApertura": 301050,
+      "diferenciaEfectivo": 0,
+      "observacionesCaja": "",
+      "stockAudit": {
+        "c-10967": {
+          "codigo": "10967",
+          "nombre": "Bondiola",
+          "categoria": "Empanadas",
+          "contadoNoche": 34,
+          "contadoApertura": 34,
+          "diferencia": 0
+        },
+        "c-11472": {
+          "codigo": "11472",
+          "nombre": "Capresse",
+          "categoria": "Empanadas",
+          "contadoNoche": 37,
+          "contadoApertura": 37,
+          "diferencia": 0
+        },
+        "c-10957": {
+          "codigo": "10957",
+          "nombre": "Carne Cuchillo",
+          "categoria": "Empanadas",
+          "contadoNoche": 90,
+          "contadoApertura": 90,
+          "diferencia": 0
+        },
+        "c-10959": {
+          "codigo": "10959",
+          "nombre": "Carne Picante",
+          "categoria": "Empanadas",
+          "contadoNoche": 57,
+          "contadoApertura": 57,
+          "diferencia": 0
+        },
+        "c-10956": {
+          "codigo": "10956",
+          "nombre": "Carne Suave",
+          "categoria": "Empanadas",
+          "contadoNoche": 84,
+          "contadoApertura": 84,
+          "diferencia": 0
+        },
+        "c-10963": {
+          "codigo": "10963",
+          "nombre": "Cebolla y Queso",
+          "categoria": "Empanadas",
+          "contadoNoche": 54,
+          "contadoApertura": 54,
+          "diferencia": 0
+        },
+        "c-14151": {
+          "codigo": "14151",
+          "nombre": "Cheeseburger",
+          "categoria": "Empanadas",
+          "contadoNoche": 32,
+          "contadoApertura": 32,
+          "diferencia": 0
+        },
+        "c-10965": {
+          "codigo": "10965",
+          "nombre": "Humita",
+          "categoria": "Empanadas",
+          "contadoNoche": 48,
+          "contadoApertura": 48,
+          "diferencia": 0
+        },
+        "c-10955": {
+          "codigo": "10955",
+          "nombre": "Jamón y Queso",
+          "categoria": "Empanadas",
+          "contadoNoche": 506,
+          "contadoApertura": 506,
+          "diferencia": 0
+        },
+        "c-10960": {
+          "codigo": "10960",
+          "nombre": "Pollo",
+          "categoria": "Empanadas",
+          "contadoNoche": 157,
+          "contadoApertura": 157,
+          "diferencia": 0
+        },
+        "c-10969": {
+          "codigo": "10969",
+          "nombre": "Roquefort con Jamón",
+          "categoria": "Empanadas",
+          "contadoNoche": 50,
+          "contadoApertura": 50,
+          "diferencia": 0
+        },
+        "c-10964": {
+          "codigo": "10964",
+          "nombre": "Verdura",
+          "categoria": "Empanadas",
+          "contadoNoche": 47,
+          "contadoApertura": 47,
+          "diferencia": 0
+        },
+        "c-10975": {
+          "codigo": "10975",
+          "nombre": "Choclo y Calabaza Integral",
+          "categoria": "Empanadas",
+          "contadoNoche": 5,
+          "contadoApertura": 5,
+          "diferencia": 0
+        },
+        "c-10976": {
+          "codigo": "10976",
+          "nombre": "Puerro y Hongos",
+          "categoria": "Empanadas",
+          "contadoNoche": 19,
+          "contadoApertura": 19,
+          "diferencia": 0
+        },
+        "c-10979": {
+          "codigo": "10979",
+          "nombre": "Carne a la Criolla Vegana",
+          "categoria": "Empanadas",
+          "contadoNoche": 14,
+          "contadoApertura": 14,
+          "diferencia": 0
+        },
+        "c-10977": {
+          "codigo": "10977",
+          "nombre": "Pollo al Curry Vegana",
+          "categoria": "Empanadas",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-11027": {
+          "codigo": "11027",
+          "nombre": "Faina Entera",
+          "categoria": "Pizzas y Medialunas",
+          "contadoNoche": 3,
+          "contadoApertura": 3,
+          "diferencia": 0
+        },
+        "c-22449": {
+          "codigo": "22449",
+          "nombre": "Combo Pizza individual",
+          "categoria": "Pizzas y Medialunas",
+          "contadoNoche": 18,
+          "contadoApertura": 18,
+          "diferencia": 0
+        },
+        "c-11017": {
+          "codigo": "11017",
+          "nombre": "Rollo de Muzzarella 380g",
+          "categoria": "Pizzas y Medialunas",
+          "contadoNoche": 24,
+          "contadoApertura": 24,
+          "diferencia": 0
+        },
+        "c-11018": {
+          "codigo": "11018",
+          "nombre": "Rollo de Muzzarella 190g",
+          "categoria": "Pizzas y Medialunas",
+          "contadoNoche": 60,
+          "contadoApertura": 60,
+          "diferencia": 0
+        },
+        "c-11025": {
+          "codigo": "11025",
+          "nombre": "Bollo de Masa de 600g",
+          "categoria": "Pizzas y Medialunas",
+          "contadoNoche": 23,
+          "contadoApertura": 23,
+          "diferencia": 0
+        },
+        "c-11026": {
+          "codigo": "11026",
+          "nombre": "Bollo de Masa de 400g",
+          "categoria": "Pizzas y Medialunas",
+          "contadoNoche": 70,
+          "contadoApertura": 70,
+          "diferencia": 0
+        },
+        "c-27749": {
+          "codigo": "27749",
+          "nombre": "Medialunas",
+          "categoria": "Pizzas y Medialunas",
+          "contadoNoche": 1715,
+          "contadoApertura": 1715,
+          "diferencia": 0
+        },
+        "c-10981": {
+          "codigo": "10981",
+          "nombre": "Burrito de Ternera",
+          "categoria": "Burritos",
+          "contadoNoche": 9,
+          "contadoApertura": 9,
+          "diferencia": 0
+        },
+        "c-10982": {
+          "codigo": "10982",
+          "nombre": "Burrito de Cerdo",
+          "categoria": "Burritos",
+          "contadoNoche": 14,
+          "contadoApertura": 14,
+          "diferencia": 0
+        },
+        "c-10983": {
+          "codigo": "10983",
+          "nombre": "Burrito de Pollo",
+          "categoria": "Burritos",
+          "contadoNoche": 1,
+          "contadoApertura": 1,
+          "diferencia": 0
+        },
+        "c-10984": {
+          "codigo": "10984",
+          "nombre": "Burrito Vegetariano",
+          "categoria": "Burritos",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-17966": {
+          "codigo": "17966",
+          "nombre": "Bollo 400gr - Porción Bondiola",
+          "categoria": "Sandwich y Panchos",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-17968": {
+          "codigo": "17968",
+          "nombre": "Bollo 400gr - Porción Pollo",
+          "categoria": "Sandwich y Panchos",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-17967": {
+          "codigo": "17967",
+          "nombre": "Bollo 400gr - Porción Ternera",
+          "categoria": "Sandwich y Panchos",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-13944": {
+          "codigo": "13944",
+          "nombre": "Porciones Bondiola",
+          "categoria": "Sandwich y Panchos",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-13943": {
+          "codigo": "13943",
+          "nombre": "Porciones Pollo",
+          "categoria": "Sandwich y Panchos",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-13942": {
+          "codigo": "13942",
+          "nombre": "Porciones Ternera",
+          "categoria": "Sandwich y Panchos",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-22445": {
+          "codigo": "22445",
+          "nombre": "Combo Pancho",
+          "categoria": "Sandwich y Panchos",
+          "contadoNoche": 7,
+          "contadoApertura": 7,
+          "diferencia": 0
+        },
+        "c-11475": {
+          "codigo": "11475",
+          "nombre": "Coca Cola 500/600ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 60,
+          "contadoApertura": 60,
+          "diferencia": 0
+        },
+        "c-94309": {
+          "codigo": "94309",
+          "nombre": "Coca Cola Zero 500/600ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 41,
+          "contadoApertura": 41,
+          "diferencia": 0
+        },
+        "c-11467": {
+          "codigo": "11467",
+          "nombre": "Fanta 600ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 20,
+          "contadoApertura": 20,
+          "diferencia": 0
+        },
+        "c-11420": {
+          "codigo": "11420",
+          "nombre": "Sprite 500/600ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 36,
+          "contadoApertura": 36,
+          "diferencia": 0
+        },
+        "c-13428": {
+          "codigo": "13428",
+          "nombre": "Sprite Zero 500/600ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 46,
+          "contadoApertura": 46,
+          "diferencia": 0
+        },
+        "c-83764": {
+          "codigo": "83764",
+          "nombre": "Aquarius 500ml Manzana",
+          "categoria": "Bebidas",
+          "contadoNoche": 9,
+          "contadoApertura": 9,
+          "diferencia": 0
+        },
+        "c-83765": {
+          "codigo": "83765",
+          "nombre": "Aquarius 500ml Pera",
+          "categoria": "Bebidas",
+          "contadoNoche": 19,
+          "contadoApertura": 19,
+          "diferencia": 0
+        },
+        "c-28708": {
+          "codigo": "28708",
+          "nombre": "Aquarius Pomelo 500/600ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 16,
+          "contadoApertura": 16,
+          "diferencia": 0
+        },
+        "c-12844": {
+          "codigo": "12844",
+          "nombre": "Coca Cola 1.5/1.75L",
+          "categoria": "Bebidas",
+          "contadoNoche": 11,
+          "contadoApertura": 11,
+          "diferencia": 0
+        },
+        "c-13427": {
+          "codigo": "13427",
+          "nombre": "Coca Cola Zero 1.5/1.75L",
+          "categoria": "Bebidas",
+          "contadoNoche": 13,
+          "contadoApertura": 13,
+          "diferencia": 0
+        },
+        "c-11465": {
+          "codigo": "11465",
+          "nombre": "Fanta 1.5/1.75L",
+          "categoria": "Bebidas",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-87757": {
+          "codigo": "87757",
+          "nombre": "Sprite 1.5/1.75L",
+          "categoria": "Bebidas",
+          "contadoNoche": 11,
+          "contadoApertura": 11,
+          "diferencia": 0
+        },
+        "c-82049": {
+          "codigo": "82049",
+          "nombre": "Sprite Zero 1.5/1.75L",
+          "categoria": "Bebidas",
+          "contadoNoche": 15,
+          "contadoApertura": 15,
+          "diferencia": 0
+        },
+        "c-90682": {
+          "codigo": "90682",
+          "nombre": "Aquarius Manzana 1.5Lt",
+          "categoria": "Bebidas",
+          "contadoNoche": 6,
+          "contadoApertura": 6,
+          "diferencia": 0
+        },
+        "c-28707": {
+          "codigo": "28707",
+          "nombre": "Aquarius Naranja 1.5 Lts.",
+          "categoria": "Bebidas",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-94301": {
+          "codigo": "94301",
+          "nombre": "Aquarius Pera 1.5ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 2,
+          "contadoApertura": 2,
+          "diferencia": 0
+        },
+        "c-22458": {
+          "codigo": "22458",
+          "nombre": "Aquarius Pomelo 1.5 Lts",
+          "categoria": "Bebidas",
+          "contadoNoche": 7,
+          "contadoApertura": 7,
+          "diferencia": 0
+        },
+        "c-96454": {
+          "codigo": "96454",
+          "nombre": "Agua Benedictino sin gas 600ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-96455": {
+          "codigo": "96455",
+          "nombre": "Agua Benedictino con gas 600ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-96456": {
+          "codigo": "96456",
+          "nombre": "Agua Benedictino sin gas 1.5L",
+          "categoria": "Bebidas",
+          "contadoNoche": 7,
+          "contadoApertura": 7,
+          "diferencia": 0
+        },
+        "c-96457": {
+          "codigo": "96457",
+          "nombre": "Agua Benedictino con gas 1.5L",
+          "categoria": "Bebidas",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        }
+      },
+      "observacionesStock": "",
+      "creadoEn": "2026-11-09T19:00:27.990Z"
+    },
+    {
+      "id": "ap-1794052586362",
+      "fecha": "2026-11-07",
+      "hora": "08:54 a. m.",
+      "empleado": "Vero",
+      "turnoAnteriorFecha": "2026-11-06",
+      "turnoAnteriorTurno": "Tarde",
+      "turnoAnteriorCerradoPor": "Fati",
+      "efectivoAnteriorEsperado": 565030,
+      "efectivoContadoApertura": 565030,
+      "diferenciaEfectivo": 0,
+      "observacionesCaja": "",
+      "stockAudit": {
+        "c-10967": {
+          "codigo": "10967",
+          "nombre": "Bondiola",
+          "categoria": "Empanadas",
+          "contadoNoche": 120,
+          "contadoApertura": 120,
+          "diferencia": 0
+        },
+        "c-11472": {
+          "codigo": "11472",
+          "nombre": "Capresse",
+          "categoria": "Empanadas",
+          "contadoNoche": 109,
+          "contadoApertura": 109,
+          "diferencia": 0
+        },
+        "c-10957": {
+          "codigo": "10957",
+          "nombre": "Carne Cuchillo",
+          "categoria": "Empanadas",
+          "contadoNoche": 298,
+          "contadoApertura": 298,
+          "diferencia": 0
+        },
+        "c-10959": {
+          "codigo": "10959",
+          "nombre": "Carne Picante",
+          "categoria": "Empanadas",
+          "contadoNoche": 105,
+          "contadoApertura": 105,
+          "diferencia": 0
+        },
+        "c-10956": {
+          "codigo": "10956",
+          "nombre": "Carne Suave",
+          "categoria": "Empanadas",
+          "contadoNoche": 299,
+          "contadoApertura": 299,
+          "diferencia": 0
+        },
+        "c-10963": {
+          "codigo": "10963",
+          "nombre": "Cebolla y Queso",
+          "categoria": "Empanadas",
+          "contadoNoche": 115,
+          "contadoApertura": 115,
+          "diferencia": 0
+        },
+        "c-14151": {
+          "codigo": "14151",
+          "nombre": "Cheeseburger",
+          "categoria": "Empanadas",
+          "contadoNoche": 179,
+          "contadoApertura": 179,
+          "diferencia": 0
+        },
+        "c-10965": {
+          "codigo": "10965",
+          "nombre": "Humita",
+          "categoria": "Empanadas",
+          "contadoNoche": 105,
+          "contadoApertura": 105,
+          "diferencia": 0
+        },
+        "c-10955": {
+          "codigo": "10955",
+          "nombre": "Jamón y Queso",
+          "categoria": "Empanadas",
+          "contadoNoche": 950,
+          "contadoApertura": 950,
+          "diferencia": 0
+        },
+        "c-10960": {
+          "codigo": "10960",
+          "nombre": "Pollo",
+          "categoria": "Empanadas",
+          "contadoNoche": 322,
+          "contadoApertura": 322,
+          "diferencia": 0
+        },
+        "c-10969": {
+          "codigo": "10969",
+          "nombre": "Roquefort con Jamón",
+          "categoria": "Empanadas",
+          "contadoNoche": 105,
+          "contadoApertura": 105,
+          "diferencia": 0
+        },
+        "c-10964": {
+          "codigo": "10964",
+          "nombre": "Verdura",
+          "categoria": "Empanadas",
+          "contadoNoche": 85,
+          "contadoApertura": 85,
+          "diferencia": 0
+        },
+        "c-10975": {
+          "codigo": "10975",
+          "nombre": "Choclo y Calabaza Integral",
+          "categoria": "Empanadas",
+          "contadoNoche": 27,
+          "contadoApertura": 27,
+          "diferencia": 0
+        },
+        "c-10976": {
+          "codigo": "10976",
+          "nombre": "Puerro y Hongos",
+          "categoria": "Empanadas",
+          "contadoNoche": 32,
+          "contadoApertura": 32,
+          "diferencia": 0
+        },
+        "c-10979": {
+          "codigo": "10979",
+          "nombre": "Carne a la Criolla Vegana",
+          "categoria": "Empanadas",
+          "contadoNoche": 32,
+          "contadoApertura": 32,
+          "diferencia": 0
+        },
+        "c-10977": {
+          "codigo": "10977",
+          "nombre": "Pollo al Curry Vegana",
+          "categoria": "Empanadas",
+          "contadoNoche": 17,
+          "contadoApertura": 17,
+          "diferencia": 0
+        },
+        "c-11027": {
+          "codigo": "11027",
+          "nombre": "Faina Entera",
+          "categoria": "Pizzas y Medialunas",
+          "contadoNoche": 3,
+          "contadoApertura": 3,
+          "diferencia": 0
+        },
+        "c-22449": {
+          "codigo": "22449",
+          "nombre": "Combo Pizza individual",
+          "categoria": "Pizzas y Medialunas",
+          "contadoNoche": 19,
+          "contadoApertura": 19,
+          "diferencia": 0
+        },
+        "c-11017": {
+          "codigo": "11017",
+          "nombre": "Rollo de Muzzarella 380g",
+          "categoria": "Pizzas y Medialunas",
+          "contadoNoche": 27,
+          "contadoApertura": 27,
+          "diferencia": 0
+        },
+        "c-11018": {
+          "codigo": "11018",
+          "nombre": "Rollo de Muzzarella 190g",
+          "categoria": "Pizzas y Medialunas",
+          "contadoNoche": 62,
+          "contadoApertura": 62,
+          "diferencia": 0
+        },
+        "c-11025": {
+          "codigo": "11025",
+          "nombre": "Bollo de Masa de 600g",
+          "categoria": "Pizzas y Medialunas",
+          "contadoNoche": 41,
+          "contadoApertura": 41,
+          "diferencia": 0
+        },
+        "c-11026": {
+          "codigo": "11026",
+          "nombre": "Bollo de Masa de 400g",
+          "categoria": "Pizzas y Medialunas",
+          "contadoNoche": 81,
+          "contadoApertura": 81,
+          "diferencia": 0
+        },
+        "c-27749": {
+          "codigo": "27749",
+          "nombre": "Medialunas",
+          "categoria": "Pizzas y Medialunas",
+          "contadoNoche": 2338,
+          "contadoApertura": 2338,
+          "diferencia": 0
+        },
+        "c-10981": {
+          "codigo": "10981",
+          "nombre": "Burrito de Ternera",
+          "categoria": "Burritos",
+          "contadoNoche": 9,
+          "contadoApertura": 9,
+          "diferencia": 0
+        },
+        "c-10982": {
+          "codigo": "10982",
+          "nombre": "Burrito de Cerdo",
+          "categoria": "Burritos",
+          "contadoNoche": 14,
+          "contadoApertura": 14,
+          "diferencia": 0
+        },
+        "c-10983": {
+          "codigo": "10983",
+          "nombre": "Burrito de Pollo",
+          "categoria": "Burritos",
+          "contadoNoche": 1,
+          "contadoApertura": 1,
+          "diferencia": 0
+        },
+        "c-10984": {
+          "codigo": "10984",
+          "nombre": "Burrito Vegetariano",
+          "categoria": "Burritos",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-17966": {
+          "codigo": "17966",
+          "nombre": "Bollo 400gr - Porción Bondiola",
+          "categoria": "Sandwich y Panchos",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-17968": {
+          "codigo": "17968",
+          "nombre": "Bollo 400gr - Porción Pollo",
+          "categoria": "Sandwich y Panchos",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-17967": {
+          "codigo": "17967",
+          "nombre": "Bollo 400gr - Porción Ternera",
+          "categoria": "Sandwich y Panchos",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-13944": {
+          "codigo": "13944",
+          "nombre": "Porciones Bondiola",
+          "categoria": "Sandwich y Panchos",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-13943": {
+          "codigo": "13943",
+          "nombre": "Porciones Pollo",
+          "categoria": "Sandwich y Panchos",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-13942": {
+          "codigo": "13942",
+          "nombre": "Porciones Ternera",
+          "categoria": "Sandwich y Panchos",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-22445": {
+          "codigo": "22445",
+          "nombre": "Combo Pancho",
+          "categoria": "Sandwich y Panchos",
+          "contadoNoche": 1,
+          "contadoApertura": 1,
+          "diferencia": 0
+        },
+        "c-11475": {
+          "codigo": "11475",
+          "nombre": "Coca Cola 500/600ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 84,
+          "contadoApertura": 84,
+          "diferencia": 0
+        },
+        "c-94309": {
+          "codigo": "94309",
+          "nombre": "Coca Cola Zero 500/600ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 42,
+          "contadoApertura": 42,
+          "diferencia": 0
+        },
+        "c-11467": {
+          "codigo": "11467",
+          "nombre": "Fanta 600ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 21,
+          "contadoApertura": 21,
+          "diferencia": 0
+        },
+        "c-11420": {
+          "codigo": "11420",
+          "nombre": "Sprite 500/600ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 39,
+          "contadoApertura": 39,
+          "diferencia": 0
+        },
+        "c-13428": {
+          "codigo": "13428",
+          "nombre": "Sprite Zero 500/600ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 47,
+          "contadoApertura": 47,
+          "diferencia": 0
+        },
+        "c-83764": {
+          "codigo": "83764",
+          "nombre": "Aquarius 500ml Manzana",
+          "categoria": "Bebidas",
+          "contadoNoche": 10,
+          "contadoApertura": 10,
+          "diferencia": 0
+        },
+        "c-83765": {
+          "codigo": "83765",
+          "nombre": "Aquarius 500ml Pera",
+          "categoria": "Bebidas",
+          "contadoNoche": 23,
+          "contadoApertura": 23,
+          "diferencia": 0
+        },
+        "c-28708": {
+          "codigo": "28708",
+          "nombre": "Aquarius Pomelo 500/600ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 18,
+          "contadoApertura": 18,
+          "diferencia": 0
+        },
+        "c-12844": {
+          "codigo": "12844",
+          "nombre": "Coca Cola 1.5/1.75L",
+          "categoria": "Bebidas",
+          "contadoNoche": 19,
+          "contadoApertura": 19,
+          "diferencia": 0
+        },
+        "c-13427": {
+          "codigo": "13427",
+          "nombre": "Coca Cola Zero 1.5/1.75L",
+          "categoria": "Bebidas",
+          "contadoNoche": 14,
+          "contadoApertura": 14,
+          "diferencia": 0
+        },
+        "c-11465": {
+          "codigo": "11465",
+          "nombre": "Fanta 1.5/1.75L",
+          "categoria": "Bebidas",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-87757": {
+          "codigo": "87757",
+          "nombre": "Sprite 1.5/1.75L",
+          "categoria": "Bebidas",
+          "contadoNoche": 13,
+          "contadoApertura": 13,
+          "diferencia": 0
+        },
+        "c-82049": {
+          "codigo": "82049",
+          "nombre": "Sprite Zero 1.5/1.75L",
+          "categoria": "Bebidas",
+          "contadoNoche": 16,
+          "contadoApertura": 16,
+          "diferencia": 0
+        },
+        "c-90682": {
+          "codigo": "90682",
+          "nombre": "Aquarius Manzana 1.5Lt",
+          "categoria": "Bebidas",
+          "contadoNoche": 7,
+          "contadoApertura": 7,
+          "diferencia": 0
+        },
+        "c-28707": {
+          "codigo": "28707",
+          "nombre": "Aquarius Naranja 1.5 Lts.",
+          "categoria": "Bebidas",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-94301": {
+          "codigo": "94301",
+          "nombre": "Aquarius Pera 1.5ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 3,
+          "contadoApertura": 3,
+          "diferencia": 0
+        },
+        "c-22458": {
+          "codigo": "22458",
+          "nombre": "Aquarius Pomelo 1.5 Lts",
+          "categoria": "Bebidas",
+          "contadoNoche": 7,
+          "contadoApertura": 7,
+          "diferencia": 0
+        },
+        "c-96454": {
+          "codigo": "96454",
+          "nombre": "Agua Benedictino sin gas 600ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 4,
+          "contadoApertura": 4,
+          "diferencia": 0
+        },
+        "c-96455": {
+          "codigo": "96455",
+          "nombre": "Agua Benedictino con gas 600ml",
+          "categoria": "Bebidas",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        },
+        "c-96456": {
+          "codigo": "96456",
+          "nombre": "Agua Benedictino sin gas 1.5L",
+          "categoria": "Bebidas",
+          "contadoNoche": 7,
+          "contadoApertura": 7,
+          "diferencia": 0
+        },
+        "c-96457": {
+          "codigo": "96457",
+          "nombre": "Agua Benedictino con gas 1.5L",
+          "categoria": "Bebidas",
+          "contadoNoche": 0,
+          "contadoApertura": 0,
+          "diferencia": 0
+        }
+      },
+      "observacionesStock": "",
+      "creadoEn": "2026-11-07T11:56:26.362Z"
+    }
+  ],
+  "ultimoCierreTarde": {
+    "id": "turno_2026-11-06_Tarde_1794019808984",
+    "timestamp": "2026-11-07T02:50:08.984Z",
+    "fecha": "2026-11-06",
+    "turno": "Tarde",
+    "cerrado": true,
+    "hora_cierre": "11:50 p. m.",
+    "cerrado_por": "Fati",
+    "pdfUrl": "/api/reportes/pdf/Acta_General_Cierre_Escobar_2026-11-06_tarde.pdf",
+    "cierreCaja": {
+      "postnet_amarillo": 225475,
+      "postnet_rosa": 0,
+      "postnet_blanco": 0,
+      "online_local_sist": 225475,
+      "efectivo_real": 565030,
+      "efectivo_mostrador_sist": 564180,
+      "observaciones": "",
+      "existe": true,
+      "fecha": "2026-11-06",
+      "turno": "Tarde",
+      "empleado": "Fati",
+      "hora": "11:50 p. m.",
+      "datalive_turno": "Tarde",
+      "diferencia_efectivo": 850,
+      "total_digital": 225475,
+      "total_recaudacion": 790505
+    },
+    "conteos": {
+      "c-11027": {
+        "ubic": {
+          "Cruda": 3,
+          "Cocida": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:29 p. m."
+      },
+      "c-22449": {
+        "ubic": {
+          "Cruda": 19,
+          "Cocida": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:29 p. m."
+      },
+      "c-11017": {
+        "ubic": {
+          "Cruda": 27,
+          "Cocida": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:29 p. m."
+      },
+      "c-11018": {
+        "ubic": {
+          "Cruda": 62,
+          "Cocida": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:29 p. m."
+      },
+      "c-11025": {
+        "ubic": {
+          "Cruda": 41,
+          "Cocida": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:29 p. m."
+      },
+      "c-11026": {
+        "ubic": {
+          "Cruda": 81,
+          "Cocida": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:29 p. m."
+      },
+      "c-27749": {
+        "ubic": {
+          "Cruda": 2338,
+          "Cocida": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:29 p. m."
+      },
+      "c-10981": {
+        "ubic": {
+          "Freezer": 9,
+          "Heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:30 p. m."
+      },
+      "c-10982": {
+        "ubic": {
+          "Freezer": 14,
+          "Heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:30 p. m."
+      },
+      "c-10983": {
+        "ubic": {
+          "Freezer": 1,
+          "Heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:30 p. m."
+      },
+      "c-10984": {
+        "ubic": {
+          "Freezer": 0,
+          "Heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:30 p. m."
+      },
+      "c-17966": {
+        "ubic": {
+          "Freezer": 0,
+          "Heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:30 p. m."
+      },
+      "c-17968": {
+        "ubic": {
+          "Freezer": 0,
+          "Heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:30 p. m."
+      },
+      "c-17967": {
+        "ubic": {
+          "Freezer": 0,
+          "Heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:30 p. m."
+      },
+      "c-13944": {
+        "ubic": {
+          "Freezer": 0,
+          "Heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:30 p. m."
+      },
+      "c-13943": {
+        "ubic": {
+          "Freezer": 0,
+          "Heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:30 p. m."
+      },
+      "c-13942": {
+        "ubic": {
+          "Freezer": 0,
+          "Heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:30 p. m."
+      },
+      "c-22445": {
+        "ubic": {
+          "Freezer": 1,
+          "Heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:30 p. m."
+      },
+      "c-10967": {
+        "ubic": {
+          "Freezer": 30,
+          "Heladera": 90,
+          "Cocidas heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:34 p. m."
+      },
+      "c-11472": {
+        "ubic": {
+          "Freezer": 30,
+          "Heladera": 74,
+          "Cocidas heladera": 5
+        },
+        "empleado": "Fati",
+        "hora": "11:34 p. m."
+      },
+      "c-10957": {
+        "ubic": {
+          "Freezer": 210,
+          "Heladera": 86,
+          "Cocidas heladera": 2
+        },
+        "empleado": "Fati",
+        "hora": "11:34 p. m."
+      },
+      "c-10959": {
+        "ubic": {
+          "Freezer": 30,
+          "Heladera": 71,
+          "Cocidas heladera": 4
+        },
+        "empleado": "Fati",
+        "hora": "11:34 p. m."
+      },
+      "c-10956": {
+        "ubic": {
+          "Freezer": 200,
+          "Heladera": 95,
+          "Cocidas heladera": 4
+        },
+        "empleado": "Fati",
+        "hora": "11:34 p. m."
+      },
+      "c-10963": {
+        "ubic": {
+          "Freezer": 60,
+          "Heladera": 55,
+          "Cocidas heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:34 p. m."
+      },
+      "c-14151": {
+        "ubic": {
+          "Freezer": 60,
+          "Heladera": 116,
+          "Cocidas heladera": 3
+        },
+        "empleado": "Fati",
+        "hora": "11:34 p. m."
+      },
+      "c-10965": {
+        "ubic": {
+          "Freezer": 30,
+          "Heladera": 75,
+          "Cocidas heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:34 p. m."
+      },
+      "c-10955": {
+        "ubic": {
+          "Freezer": 660,
+          "Heladera": 290,
+          "Cocidas heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:34 p. m."
+      },
+      "c-10960": {
+        "ubic": {
+          "Freezer": 180,
+          "Heladera": 140,
+          "Cocidas heladera": 2
+        },
+        "empleado": "Fati",
+        "hora": "11:34 p. m."
+      },
+      "c-10969": {
+        "ubic": {
+          "Freezer": 30,
+          "Heladera": 71,
+          "Cocidas heladera": 4
+        },
+        "empleado": "Fati",
+        "hora": "11:34 p. m."
+      },
+      "c-10964": {
+        "ubic": {
+          "Freezer": 0,
+          "Heladera": 77,
+          "Cocidas heladera": 8
+        },
+        "empleado": "Fati",
+        "hora": "11:34 p. m."
+      },
+      "c-10975": {
+        "ubic": {
+          "Freezer": 0,
+          "Heladera": 27,
+          "Cocidas heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:34 p. m."
+      },
+      "c-10976": {
+        "ubic": {
+          "Freezer": 0,
+          "Heladera": 32,
+          "Cocidas heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:34 p. m."
+      },
+      "c-10979": {
+        "ubic": {
+          "Freezer": 0,
+          "Heladera": 32,
+          "Cocidas heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:34 p. m."
+      },
+      "c-10977": {
+        "ubic": {
+          "Freezer": 0,
+          "Heladera": 17,
+          "Cocidas heladera": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:34 p. m."
+      },
+      "c-11475": {
+        "ubic": {
+          "Heladera": 42,
+          "Depósito": 42
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-94309": {
+        "ubic": {
+          "Heladera": 21,
+          "Depósito": 21
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-11467": {
+        "ubic": {
+          "Heladera": 13,
+          "Depósito": 8
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-11420": {
+        "ubic": {
+          "Heladera": 34,
+          "Depósito": 5
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-13428": {
+        "ubic": {
+          "Heladera": 14,
+          "Depósito": 33
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-83764": {
+        "ubic": {
+          "Heladera": 10,
+          "Depósito": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-83765": {
+        "ubic": {
+          "Heladera": 21,
+          "Depósito": 2
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-28708": {
+        "ubic": {
+          "Heladera": 14,
+          "Depósito": 4
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-12844": {
+        "ubic": {
+          "Heladera": 7,
+          "Depósito": 12
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-13427": {
+        "ubic": {
+          "Heladera": 5,
+          "Depósito": 9
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-11465": {
+        "ubic": {
+          "Heladera": 0,
+          "Depósito": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-87757": {
+        "ubic": {
+          "Heladera": 5,
+          "Depósito": 8
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-82049": {
+        "ubic": {
+          "Heladera": 8,
+          "Depósito": 8
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-90682": {
+        "ubic": {
+          "Heladera": 2,
+          "Depósito": 5
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-28707": {
+        "ubic": {
+          "Heladera": 0,
+          "Depósito": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-94301": {
+        "ubic": {
+          "Heladera": 3,
+          "Depósito": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-22458": {
+        "ubic": {
+          "Heladera": 7,
+          "Depósito": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-96454": {
+        "ubic": {
+          "Heladera": 4,
+          "Depósito": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-96455": {
+        "ubic": {
+          "Heladera": 0,
+          "Depósito": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-96456": {
+        "ubic": {
+          "Heladera": 4,
+          "Depósito": 3
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      },
+      "c-96457": {
+        "ubic": {
+          "Heladera": 0,
+          "Depósito": 0
+        },
+        "empleado": "Fati",
+        "hora": "11:38 p. m."
+      }
+    },
+    "sistemaStock": {
+      "c-10967": {
+        "stock": 121,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-11472": {
+        "stock": 113,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10957": {
+        "stock": 314,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10959": {
+        "stock": 107,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10956": {
+        "stock": 305,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10963": {
+        "stock": 116,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-14151": {
+        "stock": 180,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10965": {
+        "stock": 105,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10955": {
+        "stock": 962,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10960": {
+        "stock": 324,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10969": {
+        "stock": 107,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10964": {
+        "stock": 83,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10975": {
+        "stock": 28,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10976": {
+        "stock": 30,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10979": {
+        "stock": 33,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10977": {
+        "stock": 17,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-11027": {
+        "stock": 3,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-22449": {
+        "stock": 19,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-11017": {
+        "stock": 15,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-11018": {
+        "stock": 60,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-11025": {
+        "stock": 10,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-11026": {
+        "stock": 79,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-27749": {
+        "stock": 2398,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10981": {
+        "stock": 9,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10982": {
+        "stock": 14,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10983": {
+        "stock": 1,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-10984": {
+        "stock": 0,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-17966": {
+        "stock": 40,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-17968": {
+        "stock": 40,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-17967": {
+        "stock": 3,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-13944": {
+        "stock": 0,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-13943": {
+        "stock": 1,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-13942": {
+        "stock": 4,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-22445": {
+        "stock": 7,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-11475": {
+        "stock": 81,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-94309": {
+        "stock": 42,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-11467": {
+        "stock": 21,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-11420": {
+        "stock": 42,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-13428": {
+        "stock": 45,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-83764": {
+        "stock": 10,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-83765": {
+        "stock": 25,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-28708": {
+        "stock": 18,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-12844": {
+        "stock": 16,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-13427": {
+        "stock": 14,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-11465": {
+        "stock": 0,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-87757": {
+        "stock": 13,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-82049": {
+        "stock": 16,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-90682": {
+        "stock": 7,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-28707": {
+        "stock": 0,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-94301": {
+        "stock": 3,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-22458": {
+        "stock": 7,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-96454": {
+        "stock": 6,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-96455": {
+        "stock": 0,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-96456": {
+        "stock": 7,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      },
+      "c-96457": {
+        "stock": 0,
+        "actualizado": "2026-11-07T02:41:40.350Z"
+      }
+    },
+    "resumenStock": {
+      "totalSistema": 6021,
+      "totalContado": 5870,
+      "diferenciaTotal": -151,
+      "itemsConDiferencia": 31
+    },
+    "apertura": null,
+    "driveUrl": "https://drive.google.com/file/d/1GlitG9EGbEK-Thfnn7-OFS5EWfk4zYky/view?usp=drivesdk",
+    "driveFileId": "1GlitG9EGbEK-Thfnn7-OFS5EWfk4zYky"
+  },
+  "conteoTardeAnterior": {
+    "c-11027": {
+      "ubic": {
+        "Cruda": 3,
+        "Cocida": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:05 p. m."
+    },
+    "c-22449": {
+      "ubic": {
+        "Cruda": 18,
+        "Cocida": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:05 p. m."
+    },
+    "c-11017": {
+      "ubic": {
+        "Cruda": 35,
+        "Cocida": 14
+      },
+      "empleado": "Fati",
+      "hora": "04:05 p. m."
+    },
+    "c-11018": {
+      "ubic": {
+        "Cruda": 55,
+        "Cocida": 38
+      },
+      "empleado": "Fati",
+      "hora": "04:05 p. m."
+    },
+    "c-11025": {
+      "ubic": {
+        "Cruda": 35,
+        "Cocida": 10
+      },
+      "empleado": "Fati",
+      "hora": "04:05 p. m."
+    },
+    "c-11026": {
+      "ubic": {
+        "Cruda": 95,
+        "Cocida": 5
+      },
+      "empleado": "Fati",
+      "hora": "04:05 p. m."
+    },
+    "c-27749": {
+      "ubic": {
+        "Cruda": 2379,
+        "Cocida": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:05 p. m."
+    },
+    "c-10981": {
+      "ubic": {
+        "Freezer": 9,
+        "Heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:06 p. m."
+    },
+    "c-10982": {
+      "ubic": {
+        "Freezer": 14,
+        "Heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:06 p. m."
+    },
+    "c-10983": {
+      "ubic": {
+        "Freezer": 1,
+        "Heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:06 p. m."
+    },
+    "c-10984": {
+      "ubic": {
+        "Freezer": 0,
+        "Heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:06 p. m."
+    },
+    "c-22445": {
+      "ubic": {
+        "Freezer": 1,
+        "Heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:06 p. m."
+    },
+    "c-17966": {
+      "ubic": {
+        "Freezer": 0,
+        "Heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:06 p. m."
+    },
+    "c-17968": {
+      "ubic": {
+        "Freezer": 0,
+        "Heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:06 p. m."
+    },
+    "c-17967": {
+      "ubic": {
+        "Freezer": 0,
+        "Heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:06 p. m."
+    },
+    "c-13944": {
+      "ubic": {
+        "Freezer": 0,
+        "Heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:06 p. m."
+    },
+    "c-13943": {
+      "ubic": {
+        "Freezer": 0,
+        "Heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:06 p. m."
+    },
+    "c-13942": {
+      "ubic": {
+        "Freezer": 0,
+        "Heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:06 p. m."
+    },
+    "c-10967": {
+      "ubic": {
+        "Freezer": 120,
+        "Heladera": 90,
+        "Cocidas heladera": 8
+      },
+      "empleado": "Fati",
+      "hora": "04:10 p. m."
+    },
+    "c-11472": {
+      "ubic": {
+        "Freezer": 60,
+        "Heladera": 60,
+        "Cocidas heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:10 p. m."
+    },
+    "c-10957": {
+      "ubic": {
+        "Freezer": 330,
+        "Heladera": 90,
+        "Cocidas heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:10 p. m."
+    },
+    "c-10959": {
+      "ubic": {
+        "Freezer": 60,
+        "Heladera": 75,
+        "Cocidas heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:10 p. m."
+    },
+    "c-10956": {
+      "ubic": {
+        "Freezer": 360,
+        "Heladera": 90,
+        "Cocidas heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:10 p. m."
+    },
+    "c-10963": {
+      "ubic": {
+        "Freezer": 0,
+        "Heladera": 60,
+        "Cocidas heladera": 6
+      },
+      "empleado": "Fati",
+      "hora": "04:10 p. m."
+    },
+    "c-14151": {
+      "ubic": {
+        "Freezer": 360,
+        "Heladera": 120,
+        "Cocidas heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:10 p. m."
+    },
+    "c-10965": {
+      "ubic": {
+        "Freezer": 0,
+        "Heladera": 21,
+        "Cocidas heladera": 1
+      },
+      "empleado": "Fati",
+      "hora": "04:10 p. m."
+    },
+    "c-10955": {
+      "ubic": {
+        "Freezer": 810,
+        "Heladera": 295,
+        "Cocidas heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:10 p. m."
+    },
+    "c-10960": {
+      "ubic": {
+        "Freezer": 150,
+        "Heladera": 154,
+        "Cocidas heladera": 4
+      },
+      "empleado": "Fati",
+      "hora": "04:10 p. m."
+    },
+    "c-10969": {
+      "ubic": {
+        "Freezer": 30,
+        "Heladera": 60,
+        "Cocidas heladera": 1
+      },
+      "empleado": "Fati",
+      "hora": "04:10 p. m."
+    },
+    "c-10964": {
+      "ubic": {
+        "Freezer": 0,
+        "Heladera": 73,
+        "Cocidas heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:10 p. m."
+    },
+    "c-10975": {
+      "ubic": {
+        "Freezer": 0,
+        "Heladera": 31,
+        "Cocidas heladera": 2
+      },
+      "empleado": "Fati",
+      "hora": "04:10 p. m."
+    },
+    "c-10976": {
+      "ubic": {
+        "Freezer": 0,
+        "Heladera": 45,
+        "Cocidas heladera": 3
+      },
+      "empleado": "Fati",
+      "hora": "04:10 p. m."
+    },
+    "c-10979": {
+      "ubic": {
+        "Freezer": 30,
+        "Heladera": 9,
+        "Cocidas heladera": 2
+      },
+      "empleado": "Fati",
+      "hora": "04:10 p. m."
+    },
+    "c-10977": {
+      "ubic": {
+        "Freezer": 30,
+        "Heladera": 0,
+        "Cocidas heladera": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:10 p. m."
+    },
+    "c-11475": {
+      "ubic": {
+        "Heladera": 40,
+        "Depósito": 18
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-94309": {
+      "ubic": {
+        "Heladera": 21,
+        "Depósito": 19
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-11467": {
+      "ubic": {
+        "Heladera": 14,
+        "Depósito": 6
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-11420": {
+      "ubic": {
+        "Heladera": 33,
+        "Depósito": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-13428": {
+      "ubic": {
+        "Heladera": 14,
+        "Depósito": 32
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-83764": {
+      "ubic": {
+        "Heladera": 5,
+        "Depósito": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-83765": {
+      "ubic": {
+        "Heladera": 15,
+        "Depósito": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-28708": {
+      "ubic": {
+        "Heladera": 15,
+        "Depósito": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-12844": {
+      "ubic": {
+        "Heladera": 3,
+        "Depósito": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-13427": {
+      "ubic": {
+        "Heladera": 6,
+        "Depósito": 6
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-87757": {
+      "ubic": {
+        "Heladera": 6,
+        "Depósito": 2
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-82049": {
+      "ubic": {
+        "Heladera": 7,
+        "Depósito": 8
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-90682": {
+      "ubic": {
+        "Heladera": 3,
+        "Depósito": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-94301": {
+      "ubic": {
+        "Heladera": 2,
+        "Depósito": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-22458": {
+      "ubic": {
+        "Heladera": 5,
+        "Depósito": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-96456": {
+      "ubic": {
+        "Heladera": 6,
+        "Depósito": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-11465": {
+      "ubic": {
+        "Heladera": 0,
+        "Depósito": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-28707": {
+      "ubic": {
+        "Heladera": 0,
+        "Depósito": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-96454": {
+      "ubic": {
+        "Heladera": 0,
+        "Depósito": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-96455": {
+      "ubic": {
+        "Heladera": 0,
+        "Depósito": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    },
+    "c-96457": {
+      "ubic": {
+        "Heladera": 0,
+        "Depósito": 0
+      },
+      "empleado": "Fati",
+      "hora": "04:12 p. m."
+    }
+  },
+  "_savedAt": "2026-11-09T23:18:17.355Z"
+}

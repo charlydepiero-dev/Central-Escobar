@@ -22,7 +22,7 @@ import {
   INITIAL_EMPLEADOS,
 } from '../data/centralData';
 import { todayKey, fmtHora, fmtFechaLarga, productId, slug, normName, isAdminUser, getArgentinaHour, suggestedTurnoForNow } from '../utils/centralHelpers';
-import { normalizeSistemaStock, normalizeConteos, turnoSortKey, pickReferenciaTarde, resolveFechaOperativa, isNightClosureHour } from '../utils/snapshotNormalizer';
+import { normalizeSistemaStock, normalizeConteos, turnoSortKey, pickReferenciaTarde, resolveFechaOperativa, resolveEffectiveTurno, parseHourFromHoraStr, fechaMenosDias, isNightClosureHour } from '../utils/snapshotNormalizer';
 
 interface CentralContextType {
   // Navigation & Session
@@ -270,7 +270,19 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [pastTurnos, setPastTurnos] = useState<TurnoCierre[]>(() => {
     const raw = safeGetWithFallback<TurnoCierre[]>(STORAGE_KEYS.TURNOS, [], []);
     const list = Array.isArray(raw) ? raw : [];
-    return [...list].sort((a: any, b: any) => turnoSortKey(b).localeCompare(turnoSortKey(a)));
+    const normalized = list.map((t: any) => {
+      const fOp = resolveFechaOperativa(t) || t.fecha;
+      const tEf = resolveEffectiveTurno(t);
+      const cleanId = typeof t.id === 'string' ? t.id.replace(/_(Mañana|Tarde)_/, `_${tEf}_`) : t.id;
+      return {
+        ...t,
+        id: cleanId,
+        fecha: fOp,
+        turno: tEf,
+        cierreCaja: t.cierreCaja ? { ...t.cierreCaja, fecha: fOp, turno: tEf } : t.cierreCaja,
+      };
+    });
+    return [...normalized].sort((a: any, b: any) => turnoSortKey(b).localeCompare(turnoSortKey(a)));
   });
 
   const [resumenModalData, setResumenModalData] = useState<{
@@ -287,14 +299,15 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   // Servidor / Datalive caja de noche anterior
   const [serverTurnoNoche, setServerTurnoNoche] = useState<TurnoCierre | null>(null);
+  const [serverEfectivoEsperado, setServerEfectivoEsperado] = useState<number>(0);
 
   // Último turno cerrado del tipo "Tarde" (noche anterior)
   const ultimoTurnoNoche: TurnoCierre | null = useMemo(() => {
     const todos: TurnoCierre[] = [...pastTurnos];
-    if (serverTurnoNoche) {
+    if (serverTurnoNoche && resolveEffectiveTurno(serverTurnoNoche) === 'Tarde') {
       const fSrv = resolveFechaOperativa(serverTurnoNoche);
       const idx = todos.findIndex(
-        (t) => resolveFechaOperativa(t) === fSrv && t.turno === serverTurnoNoche.turno
+        (t) => resolveFechaOperativa(t) === fSrv && resolveEffectiveTurno(t) === 'Tarde'
       );
       if (idx >= 0) {
         todos[idx] = serverTurnoNoche;
@@ -312,6 +325,17 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
   }, [serverTurnoNoche, pastTurnos, currentFecha]);
 
   const efectivoNocheEsperado: number = useMemo(() => {
+    const ayerIso = fechaMenosDias(currentFecha, 1);
+    const esDeAyer = Boolean(ultimoTurnoNoche && ultimoTurnoNoche.fecha === ayerIso);
+    if (esDeAyer && ultimoTurnoNoche?.cierreCaja) {
+      const val = Number(ultimoTurnoNoche.cierreCaja.efectivo_real ?? ultimoTurnoNoche.cierreCaja.efectivo_mostrador_sist);
+      if (!isNaN(val) && val > 0) {
+        return val;
+      }
+    }
+    if (serverEfectivoEsperado > 0) {
+      return serverEfectivoEsperado;
+    }
     if (ultimoTurnoNoche?.cierreCaja) {
       const val = Number(ultimoTurnoNoche.cierreCaja.efectivo_real ?? ultimoTurnoNoche.cierreCaja.efectivo_mostrador_sist);
       if (!isNaN(val) && val > 0) {
@@ -319,7 +343,7 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
       }
     }
     return 0;
-  }, [ultimoTurnoNoche]);
+  }, [ultimoTurnoNoche, currentFecha, serverEfectivoEsperado]);
 
   // Apertura del Día state y persistencia
   const [aperturasDia, setAperturasDia] = useState<AperturaDiaData[]>([]);
@@ -339,22 +363,26 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
           } else {
             setUltimaAperturaDia(null);
           }
+          if (data.efectivoEsperado !== undefined) {
+            setServerEfectivoEsperado(Number(data.efectivoEsperado) || 0);
+          }
           if (!data.ultimoTurnoNoche) setServerTurnoNoche(null);
-          if (data.ultimoTurnoNoche) {
+          if (data.ultimoTurnoNoche && resolveEffectiveTurno(data.ultimoTurnoNoche) === 'Tarde') {
             const normNoche: TurnoCierre = {
               ...data.ultimoTurnoNoche,
               fecha: resolveFechaOperativa(data.ultimoTurnoNoche) || data.ultimoTurnoNoche.fecha,
+              turno: 'Tarde',
               conteos: normalizeConteos(data.ultimoTurnoNoche.conteos),
               sistemaStock: normalizeSistemaStock(data.ultimoTurnoNoche.sistemaStock),
             };
             setServerTurnoNoche(normNoche);
             setPastTurnos((prev) => {
               const exists = prev.some(
-                (p) => resolveFechaOperativa(p) === normNoche.fecha && p.turno === normNoche.turno
+                (p) => resolveFechaOperativa(p) === normNoche.fecha && resolveEffectiveTurno(p) === normNoche.turno
               );
               const merged = exists
                 ? prev.map((p) =>
-                    resolveFechaOperativa(p) === normNoche.fecha && p.turno === normNoche.turno ? normNoche : p
+                    resolveFechaOperativa(p) === normNoche.fecha && resolveEffectiveTurno(p) === normNoche.turno ? normNoche : p
                   )
                 : [normNoche, ...prev];
               return merged.sort((a, b) => turnoSortKey(b).localeCompare(turnoSortKey(a)));
@@ -604,15 +632,27 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
           const map = new Map<string, TurnoCierre>();
           data.pastTurnos.forEach((t: TurnoCierre) => {
             const fOp = resolveFechaOperativa(t) || t.fecha;
-            const k = t.id || `${fOp}_${t.turno}_${t.hora_cierre}`;
-            map.set(k, { ...t, id: k, fecha: fOp });
+            const tEf = resolveEffectiveTurno(t);
+            const cleanId = typeof t.id === 'string' ? t.id.replace(/_(Mañana|Tarde)_/, `_${tEf}_`) : t.id;
+            const k = cleanId || `${fOp}_${tEf}_${t.hora_cierre}`;
+            map.set(k, {
+              ...t,
+              id: k,
+              fecha: fOp,
+              turno: tEf,
+              cierreCaja: t.cierreCaja ? { ...t.cierreCaja, fecha: fOp, turno: tEf } : t.cierreCaja,
+            });
           });
           const hace3min = Date.now() - 3 * 60 * 1000;
           prev.forEach((t) => {
             const fOp = resolveFechaOperativa(t) || t.fecha;
-            const k = t.id || `${fOp}_${t.turno}_${t.hora_cierre}`;
+            const tEf = resolveEffectiveTurno(t);
+            const cleanId = typeof t.id === 'string' ? t.id.replace(/_(Mañana|Tarde)_/, `_${tEf}_`) : t.id;
+            const k = cleanId || `${fOp}_${tEf}_${t.hora_cierre}`;
             const reciente = t.timestamp ? Date.parse(t.timestamp) > hace3min : false;
-            if (!map.has(k) && reciente) map.set(k, { ...t, id: k, fecha: fOp });
+            if (!map.has(k) && reciente && !t.autoArchivado) {
+              map.set(k, { ...t, id: k, fecha: fOp, turno: tEf });
+            }
           });
           const merged = Array.from(map.values()).sort((a, b) => turnoSortKey(b).localeCompare(turnoSortKey(a)));
           return merged;
@@ -1450,18 +1490,20 @@ export const CentralProvider: React.FC<{ children: React.ReactNode }> = ({ child
     const fechaOperativa = todayKey();
     const arHour = getArgentinaHour();
 
-    // Si se está cerrando en horario nocturno (>=19 hs o <05 hs) y el selector había quedado en 'Mañana',
-    // clasificarlo automáticamente como 'Tarde' para que la Apertura del día siguiente lo tome sin fallar.
+    // Si se está cerrando genuinamente en horario nocturno (>=20 hs o <05 hs en formato 24h) y el selector había quedado en 'Mañana'
+    // (y la caja Datalive no es de Mañana), clasificarlo automáticamente como 'Tarde'.
     let turnoEfectivo: 'Mañana' | 'Tarde' = currentTurno;
-    if (turnoEfectivo === 'Mañana' && (isNightClosureHour(hora) || arHour >= 19 || arHour < 5)) {
-      const yaCerroMananaHoy = pastTurnos.some(
-        (pt) => resolveFechaOperativa(pt) === fechaOperativa && pt.turno === 'Mañana' && !pt.autoArchivado
-      );
-      if (yaCerroMananaHoy || arHour >= 20 || arHour < 5 || isNightClosureHour(hora)) {
-        turnoEfectivo = 'Tarde';
-        setCurrentTurno('Tarde');
-        currentTurnoRef.current = 'Tarde';
-      }
+    const dlTurno = String(overrideCaja?.datalive_turno ?? cierreCaja.datalive_turno ?? '').trim().toLowerCase();
+    if (turnoEfectivo === 'Mañana' && dlTurno !== 'mañana' && (isNightClosureHour(hora) || arHour >= 20 || arHour < 5)) {
+      turnoEfectivo = 'Tarde';
+      setCurrentTurno('Tarde');
+      currentTurnoRef.current = 'Tarde';
+    }
+    const parsedHr = parseHourFromHoraStr(hora);
+    if (turnoEfectivo === 'Tarde' && dlTurno === 'mañana' && parsedHr !== null && parsedHr >= 8 && parsedHr < 19) {
+      turnoEfectivo = 'Mañana';
+      setCurrentTurno('Mañana');
+      currentTurnoRef.current = 'Mañana';
     }
 
     const textoWA = generarTextoReporteWhatsApp(cerrador);

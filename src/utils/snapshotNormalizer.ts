@@ -162,20 +162,48 @@ export function operationalDateFromDate(now: Date): string {
   }
 }
 
-/** Hora numérica (0-23) a partir de un string "HH:MM" o similar. */
+/** Hora numérica en formato 24h (0-23) a partir de un string "HH:MM", "03:45 p. m.", "11:50 p. m.", etc. */
 export function parseHourFromHoraStr(hora?: string | null): number | null {
   if (!hora) return null;
-  const m = String(hora).trim().match(/^(\d{1,2}):(\d{2})/);
+  const norm = String(hora).replace(/\s+/g, ' ').trim().toLowerCase();
+  const m = norm.match(/(\d{1,2}):(\d{2})/);
   if (!m) return null;
-  const h = parseInt(m[1], 10);
-  return isNaN(h) ? null : h;
+  let h = parseInt(m[1], 10);
+  if (isNaN(h)) return null;
+  const isPm = /p\.?\s*m\.?/.test(norm);
+  const isAm = /a\.?\s*m\.?/.test(norm);
+  if (isPm && h < 12) h += 12;
+  if (isAm && h === 12) h = 0;
+  return h;
 }
 
-/** Determina si una hora de cierre ("23:45", "00:30", etc.) corresponde a un horario nocturno. */
+/** Determina si una hora de cierre ("23:45", "11:50 p. m.", "12:30 a. m.", etc.) corresponde a un horario nocturno real (20:00 a 04:59). */
 export function isNightClosureHour(hora?: string | null): boolean {
   const h = parseHourFromHoraStr(hora);
   if (h === null) return false;
-  return h >= 19 || h < CORTE_OPERATIVO_HS;
+  return h >= 20 || h < CORTE_OPERATIVO_HS;
+}
+
+/**
+ * Determina el turno efectivo real ('Mañana' | 'Tarde') de un registro, corrigiendo turnos
+ * cerrados a la tarde (ej. 03:45 p. m. / 04:20 p. m.) que habían quedado etiquetados como 'Tarde'.
+ */
+export function resolveEffectiveTurno(t: any): 'Mañana' | 'Tarde' {
+  if (!t) return 'Mañana';
+  const idStr = String(t.id || '');
+  const dlTurno = String(t.cierreCaja?.datalive_turno || '').trim().toLowerCase();
+  const horaStr = t.hora_cierre || t.cierreCaja?.hora || '';
+  const h = parseHourFromHoraStr(horaStr);
+
+  if (t.turno === 'Tarde') {
+    if (idStr.includes('_Mañana_') || dlTurno === 'mañana') {
+      return 'Mañana';
+    }
+    if (h !== null && h >= 8 && h < 19) {
+      return 'Mañana';
+    }
+  }
+  return t.turno === 'Tarde' ? 'Tarde' : 'Mañana';
 }
 
 /** Verifica si un turno tiene datos reales cargados (conteos físicos o arqueo de caja). */
@@ -247,10 +275,10 @@ export function resolveFechaOperativa(t: any): string {
 }
 
 /**
- * Turno de referencia para la APERTURA: el último turno nocturno (Tarde) anterior a `hoyIso`.
+ * Turno de referencia para la APERTURA: exclusivamente el último turno nocturno (Tarde) anterior a `hoyIso`.
  * - Corrige automáticamente fechas adelantadas +1 día por UTC luego de las 21:00 ART.
- * - Acepta turnos auto-archivados si contienen datos reales (conteos o caja) cuando no hubo cierre formal ese día.
- * - Tolera cierres nocturnos (>19:00 hs o <05:00 hs) que hayan quedado etiquetados como Mañana por error si ese día no tuvo Tarde.
+ * - Descarta cualquier turno Mañana (incluso si había quedado mal etiquetado por formato 12h p. m.).
+ * - Acepta turnos Tarde cerrados o auto-archivados con datos reales.
  */
 export function pickReferenciaTarde<
   T extends {
@@ -271,7 +299,6 @@ export function pickReferenciaTarde<
   type Enriched = {
     original: T;
     fechaEfectiva: string;
-    esTardeExplicito: boolean;
     esCierreFormal: boolean;
     tieneDatos: boolean;
     sortTime: string;
@@ -284,34 +311,24 @@ export function pickReferenciaTarde<
     const fechaEfectiva = resolveFechaOperativa(t);
     if (!fechaEfectiva) continue;
 
+    const turnoEfectivo = resolveEffectiveTurno(t);
+    // JAMÁS tomar un cierre de Turno Mañana como referencia para la Apertura del Día
+    if (turnoEfectivo !== 'Tarde') continue;
+
     const horaCierre = t.hora_cierre || t.cierreCaja?.hora || '';
-    const esHoraNocturna = isNightClosureHour(horaCierre);
-    const esTardeExplicito = t.turno === 'Tarde';
     const tieneDatos = hasRealTurnoData(t);
     const esCierreFormal = Boolean(t.cerrado) && !t.autoArchivado;
 
-    // Solo considerar turnos Tarde (cerrados o auto-archivados con datos) o cierres en horario nocturno con datos
-    const calificaComoNoche =
-      (esTardeExplicito && (esCierreFormal || (t.autoArchivado && tieneDatos) || tieneDatos)) ||
-      (!esTardeExplicito && esHoraNocturna && tieneDatos);
-
-    if (!calificaComoNoche) continue;
-
-    // Para la apertura de `hoyIso`, buscamos el cierre de la noche anterior (`fechaEfectiva < hoyIso`).
-    // Excepción: si por algún motivo `fechaEfectiva === hoyIso` pero se cerró en la madrugada (<05:00) o noche (>=19:00)
-    // y no existe otro turno de hoy, permitir evaluarlo si `fechaEfectiva` quedó en `hoyIso`.
+    if (!esCierreFormal && !tieneDatos) continue;
     if (fechaEfectiva > hoyIso) continue;
-    if (fechaEfectiva === hoyIso && !esHoraNocturna && t.fecha === hoyIso) {
-      // Si es de hoy pero todavía no es de noche, solo permitirlo si es el único candidato
-    }
 
     enriquecidos.push({
       original: {
         ...t,
         fecha: fechaEfectiva,
+        turno: 'Tarde',
       },
       fechaEfectiva,
-      esTardeExplicito,
       esCierreFormal,
       tieneDatos,
       sortTime: t.timestamp || `${fechaEfectiva}T${horaCierre || '23:59'}`,
@@ -322,12 +339,12 @@ export function pickReferenciaTarde<
     return { turno: null, esDeAyer: false, diasAtras: null };
   }
 
-  // Preferir estrictamente los turnos cuya fecha operativa sea anterior a `hoyIso` (ej: sábado a la noche para abrir el domingo)
+  // Preferir estrictamente los turnos cuya fecha operativa sea anterior a `hoyIso` (ej: domingo a la noche para abrir el lunes)
   const anterioresAHoy = enriquecidos.filter((e) => e.fechaEfectiva < hoyIso);
   const pool = anterioresAHoy.length > 0 ? anterioresAHoy : enriquecidos;
 
   pool.sort((a, b) => {
-    // 1) Fecha operativa más reciente primero (ej. sábado 2026-11-07 > viernes 2026-11-06)
+    // 1) Fecha operativa más reciente primero
     if (a.fechaEfectiva !== b.fechaEfectiva) {
       return b.fechaEfectiva.localeCompare(a.fechaEfectiva);
     }
@@ -335,15 +352,11 @@ export function pickReferenciaTarde<
     if (a.tieneDatos !== b.tieneDatos) {
       return a.tieneDatos ? -1 : 1;
     }
-    // 3) En la misma fecha, priorizar turno explícitamente etiquetado como 'Tarde'
-    if (a.esTardeExplicito !== b.esTardeExplicito) {
-      return a.esTardeExplicito ? -1 : 1;
-    }
-    // 4) En la misma fecha, priorizar cierre formal sobre auto-archivado
+    // 3) En la misma fecha, priorizar cierre formal sobre auto-archivado
     if (a.esCierreFormal !== b.esCierreFormal) {
       return a.esCierreFormal ? -1 : 1;
     }
-    // 5) Más reciente por timestamp / hora de cierre
+    // 4) Más reciente por timestamp / hora de cierre
     return b.sortTime.localeCompare(a.sortTime);
   });
 

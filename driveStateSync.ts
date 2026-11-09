@@ -50,7 +50,7 @@ export async function pushStateToDrive(cfg: DriveSyncConfig, stateJson: string):
 /** Guardado con retraso (agrupa varios cambios seguidos) y de a uno por vez. */
 export function createDebouncedPusher(
   getCfg: () => DriveSyncConfig | null,
-  getJson: () => string,
+  getJson: (remoteState?: any | null) => string,
   delayMs = 3000,
   onResult?: (ok: boolean, error?: string) => void
 ) {
@@ -63,7 +63,11 @@ export function createDebouncedPusher(
     if (!cfg) { dirty = false; return; }
     if (inFlight) return; // se reintenta al terminar
     dirty = false;
-    inFlight = pushStateToDrive(cfg, getJson())
+    inFlight = (async () => {
+      const remote = await pullStateFromDrive(cfg).catch(() => null);
+      const payload = getJson(remote?.state || null);
+      await pushStateToDrive(cfg, payload);
+    })()
       .then(() => {
         console.log('[DriveSync] Estado guardado en Google Drive.');
         onResult?.(true);
